@@ -1,6 +1,6 @@
 #!/bin/bash
-rm -f build
-rm -f arm-none-eabi
+rm -rf build
+rm -rf arm-none-eabi
 mkdir -p build
 cd build
 mkdir -p lib
