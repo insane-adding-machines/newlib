@@ -109,10 +109,12 @@ case "${host_cpu}" in
 	;;
   arm*-*-frosted*)
     sys_dir=frosted
+	syscall_dir=syscalls
     newlib_cflags="${newlib_cflags} -DSIGNAL_PROVIDED"
     ;;
   arm*-frosted*)
     sys_dir=frosted
+	syscall_dir=syscalls
     newlib_cflags="${newlib_cflags} -DSIGNAL_PROVIDED"
     ;;
   avr*)
