@@ -107,6 +107,14 @@ case "${host_cpu}" in
 	machine_dir=arm
 	libm_machine_dir=arm
 	;;
+  arm*-*-frosted*)
+    sys_dir=frosted
+    newlib_cflags="${newlib_cflags} -DSIGNAL_PROVIDED"
+    ;;
+  arm*-frosted*)
+    sys_dir=frosted
+    newlib_cflags="${newlib_cflags} -DSIGNAL_PROVIDED"
+    ;;
   avr*)
 	newlib_cflags="${newlib_cflags} -DPREFER_SIZE_OVER_SPEED -mcall-prologues"
 	;;
@@ -399,7 +407,7 @@ case "${host}" in
 	signal_dir=
 	;;
   arm*-*-*)
-	sys_dir=arm
+	#sys_dir=arm
 	if [ "x${newlib_may_supply_syscalls}" = "xno" ] ; then
 	  have_crt0="no"
 	fi
@@ -619,7 +627,7 @@ case "${host}" in
 	syscall_dir=syscalls
 	;;
   arm*-*-*)
-	syscall_dir=syscalls
+	#syscall_dir=syscalls
 # If newlib is supplying syscalls, select which debug protocol is being used.
 # ARM_RDP_MONITOR selects the Demon monitor.
 # ARM_RDI_MONITOR selects the Angel monitor.
