@@ -1,7 +1,7 @@
 #!/bin/bash
-rm -f build
-rm -f arm-none-eabi
-rm -f arm-frosted
+rm -rf build
+rm -rf arm-none-eabi
+rm -rf arm-frosted
 mkdir -p build
 cd build
 mkdir -p lib
@@ -12,7 +12,7 @@ export CFLAGS_FOR_TARGET
 CT_TARGET_ALIAS="arm-eabi"
 export CT_TARGET_ALIAS
 
-../configure --prefix=`pwd`/lib --target=arm-frosted --enable-newlib-nano-formatted-io --with-mode=thumb --with-cpu=cortex=m3 --disable-multilib --disable-newlib-supplied-syscalls
+../configure --prefix=`pwd`/lib --target=arm-frosted --enable-newlib-nano-formatted-io --with-mode=thumb --with-cpu=cortex=m3 --disable-multilib
 if [ $? -ne 0 ]; then
     echo Failed to configure newlib
     exit 1
