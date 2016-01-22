@@ -1,4 +1,4 @@
-#include <resource.h>
+#include <sys/resource.h>
 
 int getrlimit(int resource, struct rlimit *rlim)
 {

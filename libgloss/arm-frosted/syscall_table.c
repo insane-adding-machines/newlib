@@ -3,11 +3,6 @@
 
 #include <stdint.h>
 #include "syscall_table.h"
-/* Syscall: setclock(1 arguments) */
-int sys_setclock(uint32_t arg1){
-    syscall(SYS_SETCLOCK, arg1, 0, 0, 0, 0); 
-}
-
 /* Syscall: sleep(1 arguments) */
 int sys_sleep(uint32_t arg1){
     syscall(SYS_SLEEP, arg1, 0, 0, 0, 0); 

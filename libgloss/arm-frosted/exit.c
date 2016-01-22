@@ -9,8 +9,13 @@
 extern int errno;
 extern int sys_exit(int val);
 
-int _exit(int val)
+int exit(int val)
 {
     return sys_exit(val);
 }
+
+int _exit(int val) {
+    return sys_exit(val);
+}
+
 
