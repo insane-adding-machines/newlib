@@ -62,7 +62,7 @@ OBJS = \
 	mount.o mutex.o mutex_init.o open.o opendir.o pipe.o \
 	poll.o printf.o pwd.o read.o readdir.o recvfrom.o resource.o semaphore.o \
 	sem_init.o sendto.o setsockopt.o shutdown.o sigaction.o signal.o sigprocmask.o \
-	sigsuspend.o sleep.o socket.o stat.o svc.o syscall.o syscall_table.o tcgetattr.o \
+	sigsuspend.o sleep.o socket.o stat.o svc.o syscall.o syscalls.o syscall_table.o tcgetattr.o \
 	tcsendbreak.o tcsetattr.o thread_create.o thread_join.o ttyname.o uid.o umask.o \
 	umount.o unlink.o vfork.o wait.o waitpid.o write.o
 
