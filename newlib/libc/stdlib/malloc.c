@@ -8,7 +8,7 @@
    apply?  A first guess would be "no", but how about reentrancy in the *same*
    thread?  */
 
-#ifdef MALLOC_PROVIDED
+#if 1 //ifdef MALLOC_PROVIDED
 
 int _dummy_malloc = 1;
 
