@@ -26,18 +26,7 @@
 #define SIGSTOP     19
 #define SIGTTIN     20
 
-#ifdef __frosted__      /* TEMP FOR BUSYBOX */
-    #define NSIG	    23  /* signal 0 implied */
-    #define	SIGXCPU	    24  /* exceeded CPU time limit */
-    #define	SIGXFSZ	    25  /* exceeded file size limit */
-    #define	SIGVTALRM   26	/* virtual time alarm */
-    #define SIGMAX      27
-    typedef void (*_sig_func_ptr)(int);
-    typedef _sig_func_ptr sighandler_t;
-    #define SA_RESTART	0x10000000u
-#else
-    #define SIGMAX      21
-#endif
+#define SIGMAX      21
 
 typedef uint32_t sigset_t;
 #define SI_USER    1    /* Sent by a user. kill(), abort(), etc */
