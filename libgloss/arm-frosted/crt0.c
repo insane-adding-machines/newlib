@@ -5,9 +5,14 @@ extern int main ();
 extern void _init_signal();
  
 /* no argv, argc for now */
-void _start() {
+void _start(char *argv[]) {
     int ex;
+    int argc = 0;
+    if (argv) {
+        while(argv[argc] != 0)
+            argc++;
+    }
     _init_signal();
-    ex = main();
+    ex = main(argc, argv);
     exit(ex);
 }
