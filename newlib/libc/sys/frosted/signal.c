@@ -1,6 +1,13 @@
 #include <stdint.h>
 #include <signal.h>
 
+/* TODO: STUB */
+typedef void (*sighandler_t)(int);
+sighandler_t signal(int signum, sighandler_t handler)
+{
+    return (sighandler_t)NULL;
+}
+
 int sigemptyset(sigset_t *set)
 {
     if (!set)

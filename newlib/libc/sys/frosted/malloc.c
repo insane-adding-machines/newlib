@@ -19,3 +19,8 @@ void * realloc(void *ptr, int size)
 {
     return sys_realloc(ptr, size);
 }
+
+void * calloc(int n, int size)
+{
+    return sys_calloc(n, size);
+}

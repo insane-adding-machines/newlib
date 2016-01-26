@@ -107,16 +107,6 @@ case "${host_cpu}" in
 	machine_dir=arm
 	libm_machine_dir=arm
 	;;
-  arm*-*-frosted*)
-    sys_dir=frosted
-	syscall_dir=syscalls
-    newlib_cflags="${newlib_cflags} -DSIGNAL_PROVIDED -DMALLOC_PROVIDED"
-    ;;
-  arm*-frosted*)
-    sys_dir=frosted
-	syscall_dir=syscalls
-    newlib_cflags="${newlib_cflags} -DSIGNAL_PROVIDED -DMALLOC_PROVIDED"
-    ;;
   avr*)
 	newlib_cflags="${newlib_cflags} -DPREFER_SIZE_OVER_SPEED -mcall-prologues"
 	;;
@@ -408,6 +398,12 @@ case "${host}" in
 	sys_dir=a29khif
 	signal_dir=
 	;;
+  arm-frosted-*)
+    sys_dir=frosted
+    newlib_cflags="${newlib_cflags} -DMALLOC_PROVIDED -DREENTRANT_SYSCALLS_PROVIDED"
+    #-DSIGNAL_PROVIDED 
+	#syscall_dir=syscalls
+    ;;
   arm*-*-*)
 	#sys_dir=arm
 	if [ "x${newlib_may_supply_syscalls}" = "xno" ] ; then

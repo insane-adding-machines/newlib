@@ -9,25 +9,23 @@ struct timeval;
 struct timezone;
 typedef void DIR;
 
-
-
 void _exit();
 int fork(void);
 int fstat(int fildes, struct stat *st);
 int isatty(int file);
 int stat(const char *file, struct stat *st);
-//int link(char *existing, char *new);
+int link(char *existing, char *new);
 int close(int file);
 int getpid();
 int kill(int pid, int sig);
-//int lseek(int file, int ptr, int dir);
+int lseek(int file, int ptr, int dir);
 int open(const char *name, int flags, ...);
-//int read(int file, void *ptr, int len);
-//int unlink(const char *name);
+int read(int file, void *ptr, int len);
+int unlink(const char *name);
 int wait(int *status);
-//int write(int file, const void *ptr, int len);
+int write(int file, const void *ptr, int len);
 void free(void * ptr);
-//void *malloc(int size);   get this from stdlib.h
+void *malloc(int size);
 DIR *opendir(const char *path);
 int mkdir(const char *_path, mode_t __mode);
 int readdir(DIR *d, struct dirent *ep);

@@ -1,5 +1,13 @@
 #ifndef ERRNO_INCLUDED
 #define ERRNO_INCLUDED
+
+extern int errno;
+
+#ifndef __error_t_defined
+typedef int error_t;
+# define __error_t_defined
+#endif
+
 #define	EPERM		 1	/* Operation not permitted */
 #define	ENOENT		 2	/* No such file or directory */
 #define	ESRCH		 3	/* No such process */
@@ -81,6 +89,7 @@
 #define	EBADFD		77	/* File descriptor in bad state */
 #define	EREMCHG		78	/* Remote address changed */
 #define	ELIBACC		79	/* Can not access a needed shared library */
+#define EFTYPE      79  /* XXX: Duplicate! Inappropriate file type or format */
 #define	ELIBBAD		80	/* Accessing a corrupted shared library */
 #define	ELIBSCN		81	/* .lib section in a.out corrupted */
 #define	ELIBMAX		82	/* Attempting to link in too many shared libraries */
