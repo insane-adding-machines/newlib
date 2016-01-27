@@ -400,7 +400,7 @@ case "${host}" in
 	;;
   arm-frosted-*)
     sys_dir=frosted
-    newlib_cflags="${newlib_cflags} -DMALLOC_PROVIDED -DREENTRANT_SYSCALLS_PROVIDED -DSIGNAL_PROVIDED -DMISSING_SYSCALL_NAMES"
+    newlib_cflags="${newlib_cflags} -DMALLOC_PROVIDED -DSIGNAL_PROVIDED -DMISSING_SYSCALL_NAMES"
 	#syscall_dir=syscalls
     ;;
   arm*-*-*)
