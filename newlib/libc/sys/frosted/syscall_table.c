@@ -328,3 +328,8 @@ int sys_waitpid(uint32_t arg1, uint32_t arg2, uint32_t arg3){
     syscall(SYS_WAITPID, arg1, arg2, arg3, 0,  0); 
 }
 
+/* Syscall: lstat(2 arguments) */
+int sys_lstat(uint32_t arg1, uint32_t arg2){
+    syscall(SYS_LSTAT, arg1, arg2, 0, 0, 0); 
+}
+

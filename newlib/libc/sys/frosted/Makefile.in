@@ -79,33 +79,34 @@ am_lib_a_OBJECTS = lib_a-accept.$(OBJEXT) lib_a-bind.$(OBJEXT) \
 	lib_a-fstat.$(OBJEXT) lib_a-getcwd.$(OBJEXT) \
 	lib_a-gethostname.$(OBJEXT) lib_a-getlogin.$(OBJEXT) \
 	lib_a-getpid.$(OBJEXT) lib_a-getppid.$(OBJEXT) \
-	lib_a-getsockopt.$(OBJEXT) lib_a-grp.$(OBJEXT) \
-	lib_a-ioctl.$(OBJEXT) lib_a-isatty.$(OBJEXT) \
-	lib_a-kill.$(OBJEXT) lib_a-link.$(OBJEXT) \
-	lib_a-listen.$(OBJEXT) lib_a-lseek.$(OBJEXT) \
-	lib_a-malloc.$(OBJEXT) lib_a-malloc_trim.$(OBJEXT) \
-	lib_a-mkdir.$(OBJEXT) lib_a-mount.$(OBJEXT) \
-	lib_a-mutex.$(OBJEXT) lib_a-mutex_init.$(OBJEXT) \
-	lib_a-open.$(OBJEXT) lib_a-opendir.$(OBJEXT) \
-	lib_a-pipe.$(OBJEXT) lib_a-poll.$(OBJEXT) \
-	lib_a-printf.$(OBJEXT) lib_a-pwd.$(OBJEXT) \
-	lib_a-read.$(OBJEXT) lib_a-readdir.$(OBJEXT) \
-	lib_a-recvfrom.$(OBJEXT) lib_a-resource.$(OBJEXT) \
-	lib_a-semaphore.$(OBJEXT) lib_a-sem_init.$(OBJEXT) \
-	lib_a-sendto.$(OBJEXT) lib_a-setsockopt.$(OBJEXT) \
-	lib_a-shutdown.$(OBJEXT) lib_a-sigaction.$(OBJEXT) \
-	lib_a-signal.$(OBJEXT) lib_a-sigprocmask.$(OBJEXT) \
-	lib_a-sigsuspend.$(OBJEXT) lib_a-sleep.$(OBJEXT) \
-	lib_a-socket.$(OBJEXT) lib_a-stat.$(OBJEXT) \
-	lib_a-svc.$(OBJEXT) lib_a-syscall.$(OBJEXT) \
-	lib_a-syscalls.$(OBJEXT) lib_a-syscall_table.$(OBJEXT) \
-	lib_a-tcgetattr.$(OBJEXT) lib_a-tcsendbreak.$(OBJEXT) \
-	lib_a-tcsetattr.$(OBJEXT) lib_a-thread_create.$(OBJEXT) \
-	lib_a-thread_join.$(OBJEXT) lib_a-ttyname.$(OBJEXT) \
-	lib_a-uid.$(OBJEXT) lib_a-umask.$(OBJEXT) \
-	lib_a-umount.$(OBJEXT) lib_a-unlink.$(OBJEXT) \
-	lib_a-vfork.$(OBJEXT) lib_a-wait.$(OBJEXT) \
-	lib_a-waitpid.$(OBJEXT) lib_a-write.$(OBJEXT)
+	lib_a-getsockopt.$(OBJEXT) lib_a-gettimeofday.$(OBJEXT) \
+	lib_a-grp.$(OBJEXT) lib_a-ioctl.$(OBJEXT) \
+	lib_a-isatty.$(OBJEXT) lib_a-kill.$(OBJEXT) \
+	lib_a-link.$(OBJEXT) lib_a-listen.$(OBJEXT) \
+	lib_a-lseek.$(OBJEXT) lib_a-malloc.$(OBJEXT) \
+	lib_a-malloc_trim.$(OBJEXT) lib_a-mkdir.$(OBJEXT) \
+	lib_a-mount.$(OBJEXT) lib_a-mutex.$(OBJEXT) \
+	lib_a-mutex_init.$(OBJEXT) lib_a-open.$(OBJEXT) \
+	lib_a-opendir.$(OBJEXT) lib_a-pipe.$(OBJEXT) \
+	lib_a-poll.$(OBJEXT) lib_a-printf.$(OBJEXT) \
+	lib_a-pwd.$(OBJEXT) lib_a-read.$(OBJEXT) \
+	lib_a-readdir.$(OBJEXT) lib_a-recvfrom.$(OBJEXT) \
+	lib_a-resource.$(OBJEXT) lib_a-semaphore.$(OBJEXT) \
+	lib_a-sem_init.$(OBJEXT) lib_a-sendto.$(OBJEXT) \
+	lib_a-setsockopt.$(OBJEXT) lib_a-shutdown.$(OBJEXT) \
+	lib_a-sigaction.$(OBJEXT) lib_a-signal.$(OBJEXT) \
+	lib_a-sigprocmask.$(OBJEXT) lib_a-sigsuspend.$(OBJEXT) \
+	lib_a-sleep.$(OBJEXT) lib_a-socket.$(OBJEXT) \
+	lib_a-stat.$(OBJEXT) lib_a-svc.$(OBJEXT) \
+	lib_a-syscall.$(OBJEXT) lib_a-syscalls.$(OBJEXT) \
+	lib_a-syscall_table.$(OBJEXT) lib_a-tcgetattr.$(OBJEXT) \
+	lib_a-tcsendbreak.$(OBJEXT) lib_a-tcsetattr.$(OBJEXT) \
+	lib_a-thread_create.$(OBJEXT) lib_a-thread_join.$(OBJEXT) \
+	lib_a-ttyname.$(OBJEXT) lib_a-uid.$(OBJEXT) \
+	lib_a-umask.$(OBJEXT) lib_a-umount.$(OBJEXT) \
+	lib_a-unlink.$(OBJEXT) lib_a-vfork.$(OBJEXT) \
+	lib_a-wait.$(OBJEXT) lib_a-waitpid.$(OBJEXT) \
+	lib_a-write.$(OBJEXT)
 lib_a_OBJECTS = $(am_lib_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp =
@@ -235,7 +236,7 @@ noinst_LIBRARIES = lib.a
 lib_a_SOURCES = \
 	accept.c bind.c chdir.c chroot.c close.c closedir.c connect.c \
 	dup2.c dup.c errno.c exec.c exit.c fgets.c fork.c free.c fstat.c getcwd.c \
-	gethostname.c getlogin.c getpid.c getppid.c getsockopt.c grp.c ioctl.c \
+	gethostname.c getlogin.c getpid.c getppid.c getsockopt.c gettimeofday.c grp.c ioctl.c \
 	isatty.c kill.c link.c listen.c lseek.c malloc.c malloc_trim.c mkdir.c \
 	mount.c mutex.c mutex_init.c open.c opendir.c pipe.c \
 	poll.c printf.c pwd.c read.c readdir.c recvfrom.c resource.c semaphore.c \
@@ -437,6 +438,12 @@ lib_a-getsockopt.o: getsockopt.c
 
 lib_a-getsockopt.obj: getsockopt.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-getsockopt.obj `if test -f 'getsockopt.c'; then $(CYGPATH_W) 'getsockopt.c'; else $(CYGPATH_W) '$(srcdir)/getsockopt.c'; fi`
+
+lib_a-gettimeofday.o: gettimeofday.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-gettimeofday.o `test -f 'gettimeofday.c' || echo '$(srcdir)/'`gettimeofday.c
+
+lib_a-gettimeofday.obj: gettimeofday.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-gettimeofday.obj `if test -f 'gettimeofday.c'; then $(CYGPATH_W) 'gettimeofday.c'; else $(CYGPATH_W) '$(srcdir)/gettimeofday.c'; fi`
 
 lib_a-grp.o: grp.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-grp.o `test -f 'grp.c' || echo '$(srcdir)/'`grp.c

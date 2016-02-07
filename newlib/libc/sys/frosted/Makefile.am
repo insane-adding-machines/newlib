@@ -12,7 +12,7 @@ noinst_LIBRARIES = lib.a
 lib_a_SOURCES = \
 	accept.c bind.c chdir.c chroot.c close.c closedir.c connect.c \
 	dup2.c dup.c errno.c exec.c exit.c fgets.c fork.c free.c fstat.c getcwd.c \
-	gethostname.c getlogin.c getpid.c getppid.c getsockopt.c grp.c ioctl.c \
+	gethostname.c getlogin.c getpid.c getppid.c getsockopt.c gettimeofday.c grp.c ioctl.c \
 	isatty.c kill.c link.c listen.c lseek.c malloc.c malloc_trim.c mkdir.c \
 	mount.c mutex.c mutex_init.c open.c opendir.c pipe.c \
 	poll.c printf.c pwd.c read.c readdir.c recvfrom.c resource.c semaphore.c \
