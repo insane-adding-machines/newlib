@@ -54,14 +54,11 @@
 /*
  * Data types.
  */
-#ifdef _BSD_SA_FAMILY_T_
-typedef	_BSD_SA_FAMILY_T_	sa_family_t;
-#undef _BSD_SA_FAMILY_T_
-#endif
-
-#ifdef	_BSD_SOCKLEN_T_
-typedef	_BSD_SOCKLEN_T_	socklen_t;
-#undef	_BSD_SOCKLEN_T_
+#ifndef SOCKTYPES_DEFINED
+#define SOCKTYPES_DEFINED
+typedef uint16_t 		sa_family_t;
+typedef uint32_t		__socklen_t;
+typedef uint32_t		socklen_t;
 #endif
  
 /*
