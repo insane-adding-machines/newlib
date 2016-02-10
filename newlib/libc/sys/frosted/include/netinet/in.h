@@ -208,25 +208,22 @@ enum
 #define INADDR_ALLRTRS_GROUP    ((in_addr_t) 0xe0000002) /* 224.0.0.2 */
 #define INADDR_MAX_LOCAL_GROUP  ((in_addr_t) 0xe00000ff) /* 224.0.0.255 */
 
-#ifndef __USE_KERNEL_IPV6_DEFS
+#ifndef HAVE_STRUCT_IN6_ADDR
+#define HAVE_STRUCT_IN6_ADDR
 /* IPv6 address */
 struct in6_addr
   {
     union
       {
 	uint8_t	__u6_addr8[16];
-#ifdef __USE_MISC
 	uint16_t __u6_addr16[8];
 	uint32_t __u6_addr32[4];
-#endif
       } __in6_u;
 #define s6_addr			__in6_u.__u6_addr8
-#ifdef __USE_MISC
 # define s6_addr16		__in6_u.__u6_addr16
 # define s6_addr32		__in6_u.__u6_addr32
-#endif
   };
-#endif /* !__USE_KERNEL_IPV6_DEFS */
+#endif /* HAVE_STRUCT_IN6_ADDR */
 
 extern const struct in6_addr in6addr_any;        /* :: */
 extern const struct in6_addr in6addr_loopback;   /* ::1 */
@@ -255,17 +252,35 @@ struct sockaddr_in
 			   sizeof (struct in_addr)];
   };
 
-#ifndef __USE_KERNEL_IPV6_DEFS
-/* Ditto, for IPv6.  */
+#ifndef HAVE_STRUCT_SOCKADDR_IN6
+#define HAVE_STRUCT_SOCKADDR_IN6
 struct sockaddr_in6
-  {
-    uint16_t sin6_family;
-    in_port_t sin6_port;	/* Transport layer port # */
-    uint32_t sin6_flowinfo;	/* IPv6 flow information */
-    struct in6_addr sin6_addr;	/* IPv6 address */
-    uint32_t sin6_scope_id;	/* IPv6 scope-id */
-  };
-#endif /* !__USE_KERNEL_IPV6_DEFS */
+{
+	uint16_t sin6_family;
+	in_port_t sin6_port;	/* Transport layer port # */
+	uint32_t sin6_flowinfo;	/* IPv6 flow information */
+	struct in6_addr sin6_addr;	/* IPv6 address */
+	uint32_t sin6_scope_id;	/* IPv6 scope-id */
+};
+#endif /* !HAVE_STRUCT_SOCKADDR_IN6 */
+
+#ifndef HAVE_STRUCT_SOCKADDR_STORAGE
+# define	_SS_MAXSIZE	128	/* Implementation specific max size */
+# define       _SS_PADSIZE     (_SS_MAXSIZE - sizeof (struct sockaddr))
+struct sockaddr_storage {
+	struct sockaddr	ss_sa;
+	char		__ss_pad2[_SS_PADSIZE];
+};
+# define ss_family ss_sa.sa_family
+#endif /* !HAVE_STRUCT_SOCKADDR_STORAGE */
+
+#ifndef IN6_IS_ADDR_LOOPBACK
+# define IN6_IS_ADDR_LOOPBACK(a) \
+	(((u_int32_t *)(a))[0] == 0 && ((u_int32_t *)(a))[1] == 0 && \
+	 ((u_int32_t *)(a))[2] == 0 && ((u_int32_t *)(a))[3] == htonl(1))
+#endif /* !IN6_IS_ADDR_LOOPBACK */
+
+
 
 #ifdef __USE_MISC
 /* IPv4 multicast request.  */
