@@ -20,15 +20,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#undef putchar
-
-extern int write(int fd, const void *buf, int len);
-static void putchar(char c)
-{
-    write(1, &c, 1);
-}
-
-
+#include <stdio.h>
 #include <stdarg.h>
 
 static void printchar(char **str, int c)
@@ -187,18 +179,25 @@ static int print(char **out, const char *format, va_list args )
 }
 
 
-int printf(const char *format, ...)
+int frosted_printf(const char *format, ...)
 {
         va_list args;
         va_start( args, format );
         return print( 0, format, args );
 }
 
-int sprintf(char *out, const char *format, ...)
+int frosted_sprintf(char *out, const char *format, ...)
 {
         va_list args;
         
         va_start( args, format );
         return print( &out, format, args );
+}
+
+int printf(const char *format, ...)
+{
+    va_list args;
+    va_start(args, format);
+    return fprintf(stdout, format, args);
 }
 

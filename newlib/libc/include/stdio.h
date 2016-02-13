@@ -198,7 +198,9 @@ int	_EXFUN(getc, (FILE *));
 int	_EXFUN(getchar, (void));
 char *  _EXFUN(gets, (char *));
 int	_EXFUN(putc, (int, FILE *));
+#ifndef __FROSTED__
 int	_EXFUN(putchar, (int));
+#endif
 int	_EXFUN(puts, (const char *));
 int	_EXFUN(ungetc, (int, FILE *));
 size_t	_EXFUN(fread, (_PTR __restrict, size_t _size, size_t _n, FILE *__restrict));
