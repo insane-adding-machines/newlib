@@ -178,8 +178,12 @@ int	_EXFUN(fprintf, (FILE *__restrict, const char *__restrict, ...)
                _ATTRIBUTE ((__format__ (__printf__, 2, 3))));
 int	_EXFUN(fscanf, (FILE *__restrict, const char *__restrict, ...)
                _ATTRIBUTE ((__format__ (__scanf__, 2, 3))));
+#ifndef __frosted__
 int	_EXFUN(printf, (const char *__restrict, ...)
                _ATTRIBUTE ((__format__ (__printf__, 1, 2))));
+#else
+# define printf(...) fprintf(stdout, __VA_ARGS__)
+#endif
 int	_EXFUN(scanf, (const char *__restrict, ...)
                _ATTRIBUTE ((__format__ (__scanf__, 1, 2))));
 int	_EXFUN(sscanf, (const char *__restrict, const char *__restrict, ...)
@@ -198,7 +202,7 @@ int	_EXFUN(getc, (FILE *));
 int	_EXFUN(getchar, (void));
 char *  _EXFUN(gets, (char *));
 int	_EXFUN(putc, (int, FILE *));
-#ifndef __FROSTED__
+#ifndef __frosted__
 int	_EXFUN(putchar, (int));
 #endif
 int	_EXFUN(puts, (const char *));

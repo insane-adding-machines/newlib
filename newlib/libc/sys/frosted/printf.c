@@ -193,11 +193,12 @@ int frosted_sprintf(char *out, const char *format, ...)
         va_start( args, format );
         return print( &out, format, args );
 }
-
+/*
 int printf(const char *format, ...)
 {
     va_list args;
     va_start(args, format);
     return fprintf(stdout, format, args);
 }
+*/
 
