@@ -5,12 +5,15 @@
 #include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
-#undef errno
-extern int errno;
 extern int sys_closedir(DIR *d);
 
 int closedir(DIR *d)
 {
-    return sys_closedir(d);
+    int ret = sys_closedir(d);
+    if (ret < 0) {
+        errno = 0 - ret;
+        ret = -1;
+    }
+    return ret;
 }
 

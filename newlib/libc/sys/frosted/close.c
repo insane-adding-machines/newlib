@@ -5,12 +5,16 @@
 #include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
-#undef errno
-extern int errno;
 extern int sys_close(int fd);
 
 int close(int fd)
 {
-    return sys_close(fd);
+    int ret;
+    ret = sys_close(fd);
+    if (ret < 0) {
+        errno = 0 - ret;
+        ret = -1;
+    }
+    return ret;
 }
 

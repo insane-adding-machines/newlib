@@ -7,8 +7,6 @@
 #include "syscall_table.h"
 #include "grp.h"
 #include <errno.h>
-#undef errno
-extern int errno;
 
 int getgroups(int size, gid_t list[])
 {

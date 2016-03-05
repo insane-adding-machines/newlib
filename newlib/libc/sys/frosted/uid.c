@@ -7,8 +7,6 @@
 #include "syscall_table.h"
 #include "sys/types.h"
 #include <errno.h>
-#undef errno
-extern int errno;
 
 gid_t getgid(void)
 {

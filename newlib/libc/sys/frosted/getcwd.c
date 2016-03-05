@@ -5,11 +5,14 @@
 #include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
-#undef errno
-extern int errno;
 extern char * sys_getcwd(char *, int);
 
 char *getcwd(char *buf, int size)
 {
-    return sys_getcwd(buf, size);
+    int ret = sys_getcwd(buf, size);
+    if (ret < 0) {
+        errno = 0 - ret;
+        ret = -1;
+    }
+    return ret;
 }

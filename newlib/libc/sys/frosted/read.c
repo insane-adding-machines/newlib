@@ -5,11 +5,14 @@
 #include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
-#undef errno
-extern int errno;
 extern int sys_read(int file, void *ptr, int len);
 
 int read(int file, void *ptr, int len)
 {
-    return sys_read(file, ptr, len);
+    int ret = sys_read(file, ptr, len);
+    if (ret < 0) {
+        errno = 0 - ret;
+        ret = -1;
+    }
+    return ret;
 }

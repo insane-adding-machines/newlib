@@ -5,8 +5,6 @@
 #include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
-#undef errno
-extern int errno;
 extern int sys_exec(char *cmd, char **args);
 extern int sys_execb(void (*init)(void **), void **args);
 

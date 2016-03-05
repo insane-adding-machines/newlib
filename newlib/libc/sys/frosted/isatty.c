@@ -5,12 +5,15 @@
 #include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
-#undef errno
-extern int errno;
 extern int sys_isatty(int fd);
 
 int isatty(int fd)
 {
-    return sys_isatty(fd);
+    int ret = sys_isatty(fd);
+    if (ret < 0) {
+        errno = 0 - ret;
+        ret = -1;
+    }
+    return ret;
 }
 

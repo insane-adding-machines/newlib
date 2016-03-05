@@ -5,12 +5,16 @@
 #include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
-#undef errno
-extern int errno;
 extern int sys_umount(char *target, uint32_t flags);
 
 int umount(char *target, uint32_t flags)
 {
+    int ret;
     (void)flags; /* flags unimplemented for now */
-    return sys_umount(target, flags);
+    ret = sys_umount(target, flags);
+    if (ret < 0) {
+        errno = 0 - ret;
+        ret = -1;
+    }
+    return ret;
 }

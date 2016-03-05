@@ -6,8 +6,6 @@
 #include "syscall_table.h"
 #include <errno.h>
 #include <stdio.h>
-#undef errno
-extern int errno;
 
 char *fgets(char *s, int size, FILE *stream)
 {

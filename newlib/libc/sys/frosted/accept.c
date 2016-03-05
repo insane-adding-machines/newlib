@@ -8,8 +8,6 @@
 #include <netinet/in.h>
 #include <errno.h>
 #include <string.h>
-#undef errno
-extern int errno;
 extern int sys_accept(int sd, struct sockaddr_env *se);
 
 int accept(int sd, struct sockaddr *sa, socklen_t *socklen)
@@ -20,10 +18,16 @@ int accept(int sd, struct sockaddr *sa, socklen_t *socklen)
     se.se_len = *socklen;
     ret =  sys_accept(sd, &se);
     if (ret > 0) {
-        if (*socklen < se.se_len)
+        if (*socklen < se.se_len) {
+            errno = EPROTONOSUPPORT;
             return -1;
+        }
         memcpy(sa, se.se_addr, se.se_len); 
         *socklen = se.se_len;
+    }
+    if (ret < 0) {
+        errno = 0 - ret;
+        ret = -1;
     }
     return ret;
 }

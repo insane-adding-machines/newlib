@@ -4,7 +4,7 @@ extern void exit(int code);
 extern int main ();
 extern void _init_signal();
 
-uint16_t errno;
+int errno;
  
 /* no argv, argc for now */
 void _start(char *argv[]) {

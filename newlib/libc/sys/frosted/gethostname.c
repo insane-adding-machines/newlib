@@ -10,8 +10,6 @@
 #include "string.h"
 #include <errno.h>
 
-#undef errno
-extern int errno;
 
 static char * hostname = "frosted";
 

@@ -8,8 +8,6 @@
 #include "syscall_table.h"
 #include "sys/types.h"
 #include <errno.h>
-#undef errno
-extern int errno;
 
 struct passwd *getpwnam(const char *name)
 {

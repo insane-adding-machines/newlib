@@ -1,4 +1,5 @@
 #include <sys/resource.h>
+#include <errno.h>
 
 int getrlimit(int resource, struct rlimit *rlim)
 {
@@ -8,6 +9,7 @@ int getrlimit(int resource, struct rlimit *rlim)
 }
 int setrlimit(int resource, const struct rlimit *rlim)
 {
+    errno = ENOSYS;
     return -1;
 }
 

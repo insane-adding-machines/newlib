@@ -5,12 +5,15 @@
 #include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
-#undef errno
-extern int errno;
 extern int sys_thread_join(int pid, uint32_t timeout);
 
 int thread_join(int pid, uint32_t timeout)
 {
-    return sys_thread_join(pid, timeout);
+    int ret = sys_thread_join(pid, timeout);
+    if (ret < 0) {
+        errno = 0 - ret;
+        ret = -1;
+    }
+    return ret;
 }
 

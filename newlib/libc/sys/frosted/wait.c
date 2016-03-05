@@ -4,8 +4,6 @@
 
 #include "frosted_api.h"
 #include <errno.h>
-#undef errno
-extern int errno;
 
 int wait(int  *status)
 {

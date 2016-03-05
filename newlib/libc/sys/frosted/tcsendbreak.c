@@ -7,12 +7,15 @@
 #include "syscall_table.h"
 #include <sys/termios.h>
 #include <errno.h>
-#undef errno
-extern int errno;
 extern int sys_tcsendbreak(int fd, int duration);
 
 
 int tcsendbreak(int fd, int duration)
 {
-    return sys_tcsendbreak(fd, duration);
+    int ret = sys_tcsendbreak(fd, duration);
+    if (ret < 0) {
+        errno = 0 - ret;
+        ret = -1;
+    }
+    return ret;
 }

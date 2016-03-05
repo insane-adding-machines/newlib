@@ -6,8 +6,6 @@
 #include "syscalls.h"
 #include <errno.h>
 #include <stdint.h>
-#undef errno
-extern int errno;
 
 int _close_r(struct _reent *ptr, int fd)
 {
