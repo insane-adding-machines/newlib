@@ -946,7 +946,7 @@ all-recursive: stmp-targ-include
 # used while building.
 stmp-targ-include: config.status
 	-rm -rf targ-include stmp-targ-include
-	mkdir targ-include targ-include/sys targ-include/machine targ-include/bits
+	mkdir targ-include targ-include/sys targ-include/machine targ-include/bits targ-include/net targ-include/netinet targ-include/arpa
 	cp newlib.h targ-include/newlib.h
 	-for i in $(srcdir)/libc/machine/$(machine_dir)/machine/*.h; do \
 	    if [ -f $$i ]; then \
@@ -1023,6 +1023,18 @@ install-data-local:	install-toollibLIBRARIES
 	    if [ -f $$i ]; then \
 	     $(INSTALL_DATA) $$i $(DESTDIR)$(tooldir)/include/machine/`basename $$i`; \
 	    else true; fi ; \
+	  done; \
+	  $(mkinstalldirs) $(DESTDIR)$(tooldir)/include/netinet; \
+	  for i in $(srcdir)/libc/include/netiner/*.h; do \
+	   $(INSTALL_DATA) $$i $(DESTDIR)$(tooldir)/include/netinet/`basename $$i`; \
+	  done; \
+	  $(mkinstalldirs) $(DESTDIR)$(tooldir)/include/net; \
+	  for i in $(srcdir)/libc/include/net/*.h; do \
+	   $(INSTALL_DATA) $$i $(DESTDIR)$(tooldir)/include/net/`basename $$i`; \
+	  done; \
+	  $(mkinstalldirs) $(DESTDIR)$(tooldir)/include/arpa; \
+	  for i in $(srcdir)/libc/include/arpa/*.h; do \
+	   $(INSTALL_DATA) $$i $(DESTDIR)$(tooldir)/include/arpa/`basename $$i`; \
 	  done; \
 	  $(mkinstalldirs) $(DESTDIR)$(tooldir)/include/rpc; \
 	  for i in $(srcdir)/libc/include/rpc/*.h; do \

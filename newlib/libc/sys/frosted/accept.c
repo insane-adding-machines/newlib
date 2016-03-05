@@ -5,13 +5,14 @@
 
 #include "frosted_api.h"
 #include "syscall_table.h"
+#include <netinet/in.h>
 #include <errno.h>
 #include <string.h>
 #undef errno
 extern int errno;
 extern int sys_accept(int sd, struct sockaddr_env *se);
 
-int accept(int sd, struct sockaddr *sa, unsigned int *socklen)
+int accept(int sd, struct sockaddr *sa, socklen_t *socklen)
 {
     struct sockaddr_env se;
     int ret;

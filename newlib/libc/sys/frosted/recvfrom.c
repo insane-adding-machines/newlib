@@ -6,13 +6,14 @@
 #include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
+#include <netinet/in.h>
 #include <string.h>
 #undef errno
 extern int errno;
 extern int sys_recvfrom(int sd, void *buf, unsigned int len, int flags, struct sockaddr_env *se);
 
 
-int recvfrom(int sd, void *buf, unsigned int len, int flags, struct sockaddr *sa, unsigned int *socklen)
+int recvfrom(int sd, void *buf, size_t len, int flags, struct sockaddr *sa, socklen_t *socklen)
 {
     struct sockaddr_env se;
     int ret;

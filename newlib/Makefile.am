@@ -200,7 +200,7 @@ all-recursive: stmp-targ-include
 # used while building.
 stmp-targ-include: config.status
 	-rm -rf targ-include stmp-targ-include
-	mkdir targ-include targ-include/sys targ-include/machine targ-include/bits
+	mkdir targ-include targ-include/sys targ-include/machine targ-include/bits targ-include/net targ-include/netinet targ-include/arpa
 	cp newlib.h targ-include/newlib.h
 	-for i in $(srcdir)/libc/machine/$(machine_dir)/machine/*.h; do \
 	    if [ -f $$i ]; then \
