@@ -70,10 +70,7 @@ struct dirent {
 #define SOCK_DGRAM 17
 #endif
 
-struct __attribute__((packed)) sockaddr {
-    uint16_t sa_family;
-    uint8_t  sa_zero[14];
-};
+#include <netinet/in.h>
 
 struct __attribute__((packed)) sockaddr_un {
     uint16_t sun_family;

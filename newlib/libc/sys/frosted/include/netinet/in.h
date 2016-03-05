@@ -289,6 +289,7 @@ struct sockaddr_storage {
 	struct sockaddr	ss_sa;
 	char		__ss_pad2[_SS_PADSIZE];
 };
+# define HAVE_STRUCT_SOCKADDR_STORAGE
 # define ss_family ss_sa.sa_family
 #endif /* !HAVE_STRUCT_SOCKADDR_STORAGE */
 
