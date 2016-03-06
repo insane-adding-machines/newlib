@@ -2,7 +2,6 @@
  * Frosted version of fgets.
  */
 
-#include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
 #include <stdio.h>

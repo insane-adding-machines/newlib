@@ -2,7 +2,6 @@
  * Frosted version of gettimeofday.
  */
 
-#include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
 struct timeval;

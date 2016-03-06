@@ -2,7 +2,6 @@
  * Frosted version of mkdir.
  */
 
-#include "frosted_api.h"
 #include "syscall_table.h"
 #include "sys/types.h"
 #include <errno.h>

@@ -2,7 +2,6 @@
  * Redirect newlib's syscalls (with _underscore prefix) to Frosted's syscalls
  */
 
-#include "frosted_api.h"
 #include "syscalls.h"
 #include <errno.h>
 #include <stdint.h>

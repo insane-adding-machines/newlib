@@ -2,7 +2,6 @@
  * Frosted version of sleep.
  */
 
-#include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
 extern int sys_sleep(int s);

@@ -2,16 +2,17 @@
  * Frosted version of mutexaphore.
  */
 
-#include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
-extern sys_mutex_unlock(frosted_mutex_t *s);
-extern sys_mutex_lock(frosted_mutex_t *s);
-extern sys_mutex_destroy(frosted_mutex_t *s);
+#include <semaphore.h>
 
-int mutex_unlock(frosted_mutex_t *s)
+extern int sys_mutex_unlock(mutex_t *s);
+extern int sys_mutex_lock(mutex_t *s);
+extern int sys_mutex_destroy(mutex_t *s);
+
+int mutex_unlock(mutex_t *s)
 {
-    int ret = sys_mutex(s);
+    int ret = sys_mutex_unlock(s);
     if (ret < 0) {
         errno = 0 - ret;
         ret = -1;
@@ -19,7 +20,7 @@ int mutex_unlock(frosted_mutex_t *s)
     return ret;
 }
 
-int mutex_lock(frosted_mutex_t *s)
+int mutex_lock(mutex_t *s)
 {
     int ret = sys_mutex_lock(s);
     if (ret < 0) {
@@ -29,7 +30,7 @@ int mutex_lock(frosted_mutex_t *s)
     return ret;
 }
 
-int mutex_destroy(frosted_mutex_t *s)
+int mutex_destroy(mutex_t *s)
 {
     int ret = sys_mutex_destroy(s);
     if (ret < 0) {

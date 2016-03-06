@@ -2,9 +2,9 @@
  * Frosted version of semaphore.
  */
 
-#include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
+#include <semaphore.h>
 extern int sys_sem_post(sem_t *s);
 extern int sys_sem_wait(sem_t *s);
 extern int sys_sem_destroy(sem_t *s);

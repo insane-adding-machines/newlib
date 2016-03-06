@@ -3,7 +3,6 @@
 */
 
 
-#include "frosted_api.h"
 #include "syscall_table.h"
 #include <netinet/in.h>
 #include <errno.h>

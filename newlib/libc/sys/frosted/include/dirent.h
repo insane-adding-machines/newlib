@@ -13,8 +13,16 @@
 #define __dirfd(dir) (dir)->dd_fd
 /* --- redundant --- */
 typedef void DIR;
+
+#define MAX_FILE 64
+struct dirent {
+    uint32_t d_ino;
+    char d_name[MAX_FILE];
+};
+
 DIR *opendir(const char *);
 struct dirent *readdir(DIR *);
+int readdir_r(DIR *, struct dirent *ep, struct dirent **result);
 void rewinddir(DIR *);
 int closedir(DIR *);
 /* internal prototype */

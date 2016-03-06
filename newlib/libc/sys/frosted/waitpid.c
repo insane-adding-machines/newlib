@@ -2,7 +2,6 @@
  * Stub version of waitpid.
  */
 
-#include "frosted_api.h"
 #include <errno.h>
 #include <sys/wait.h>
 

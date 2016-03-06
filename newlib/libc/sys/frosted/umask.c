@@ -2,11 +2,10 @@
  * Frosted version of close.
  */
 
-#include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
 
-int umask(uint32_t mode)
+int umask(unsigned long mode)
 {
     return 0;
 }

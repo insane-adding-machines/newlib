@@ -3,7 +3,6 @@
 */
 
 
-#include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
 extern int sys_shutdown(int sd, int how);

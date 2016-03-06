@@ -2,7 +2,6 @@
  * Frosted version of malloc.
  */
 
-#include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
 extern void* sys_malloc(int size);

@@ -2,7 +2,6 @@
  * Frosted version of lseek.
  */
 
-#include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
 extern int sys_seek(int fd, int offset, int  whence);

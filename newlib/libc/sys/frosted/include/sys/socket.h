@@ -201,6 +201,15 @@ struct sockproto {
 	u_short	sp_protocol;		/* protocol */
 };
 
+/* Structure used internally by syscalls to pass address parameters 
+ * to the kernel
+ */
+struct sockaddr_env {
+    struct sockaddr *se_addr;
+    unsigned int se_len;
+};
+
+
 /*
  * RFC 2553: protocol-independent placeholder for socket addresses
  */

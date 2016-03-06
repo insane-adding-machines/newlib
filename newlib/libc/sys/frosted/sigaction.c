@@ -3,7 +3,6 @@
 */
 
 
-#include "frosted_api.h"
 #include "syscall_table.h"
 #include <signal.h>
 #include <errno.h>

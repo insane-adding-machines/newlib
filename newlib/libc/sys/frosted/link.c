@@ -2,7 +2,6 @@
  * Frosted version of link.
  */
 
-#include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
 extern int sys_link(char *src, char *dst);

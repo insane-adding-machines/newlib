@@ -2,7 +2,6 @@
  * Stub version of fork.
  */
 
-#include "frosted_api.h"
 #include <errno.h>
 
 int fork(void)

@@ -2,7 +2,6 @@
  * Frosted version of read.
  */
 
-#include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
 extern int sys_read(int file, void *ptr, int len);

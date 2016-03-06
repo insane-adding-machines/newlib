@@ -2,9 +2,9 @@
  * Frosted version of stat.
  */
 
-#include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
+#include <sys/stat.h>
 extern int sys_stat(char * file, struct stat *st);
 extern int sys_lstat(char * file, struct stat *st);
 

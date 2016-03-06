@@ -38,8 +38,8 @@ struct	stat
   struct timespec st_atim;
   struct timespec st_mtim;
   struct timespec st_ctim;
-  blksize_t     st_blksize;
-  blkcnt_t	st_blocks;
+  uint32_t st_blksize;
+  uint32_t	st_blocks;
 #else
   /* SysV/sco doesn't have the rest... But Solaris, eabi does.  */
 #if defined(__svr4__) && !defined(__PPC__) && !defined(__sun__)

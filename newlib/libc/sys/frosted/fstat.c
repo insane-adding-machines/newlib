@@ -2,7 +2,6 @@
  * Stub version of fstat.
  */
 
-#include "frosted_api.h"
 #include <errno.h>
 struct stat;
 

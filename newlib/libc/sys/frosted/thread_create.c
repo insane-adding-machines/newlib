@@ -2,7 +2,6 @@
  * Frosted version of thread_create.
  */
 
-#include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
 extern int sys_thread_create(void (*)(void *), void *, unsigned int);

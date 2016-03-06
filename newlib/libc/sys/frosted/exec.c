@@ -2,7 +2,6 @@
  * Frosted version of exec.
  */
 
-#include "frosted_api.h"
 #include "syscall_table.h"
 #include <errno.h>
 extern int sys_exec(char *cmd, char **args);
