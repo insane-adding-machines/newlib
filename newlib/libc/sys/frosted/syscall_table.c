@@ -13,21 +13,6 @@ int sys_suspend(uint32_t arg1){
     return syscall(SYS_SUSPEND, arg1, 0, 0, 0, 0); 
 }
 
-/* Syscall: thread_create(3 arguments) */
-int sys_thread_create(uint32_t arg1, uint32_t arg2, uint32_t arg3){
-    return syscall(SYS_THREAD_CREATE, arg1, arg2, arg3, 0,  0); 
-}
-
-/* Syscall: thread_join(2 arguments) */
-int sys_thread_join(uint32_t arg1, uint32_t arg2){
-    return syscall(SYS_THREAD_JOIN, arg1, arg2, 0, 0, 0); 
-}
-
-/* Syscall: test(5 arguments) */
-int sys_test(uint32_t arg1, uint32_t arg2, uint32_t arg3, uint32_t arg4, uint32_t arg5){
-    return syscall(SYS_TEST, arg1, arg2, arg3, arg4, arg5); 
-}
-
 /* Syscall: getpid(0 arguments) */
 int sys_getpid(void){
     return syscall(SYS_GETPID, 0, 0, 0, 0, 0); 
@@ -268,11 +253,6 @@ int sys_exec(uint32_t arg1, uint32_t arg2){
     return syscall(SYS_EXEC, arg1, arg2, 0, 0, 0); 
 }
 
-/* Syscall: execb(2 arguments) */
-int sys_execb(uint32_t arg1, uint32_t arg2){
-    return syscall(SYS_EXECB, arg1, arg2, 0, 0, 0); 
-}
-
 /* Syscall: ttyname_r(3 arguments) */
 int sys_ttyname_r(uint32_t arg1, uint32_t arg2, uint32_t arg3){
     return syscall(SYS_TTYNAME_R, arg1, arg2, arg3, 0,  0); 
@@ -331,5 +311,10 @@ int sys_waitpid(uint32_t arg1, uint32_t arg2, uint32_t arg3){
 /* Syscall: lstat(2 arguments) */
 int sys_lstat(uint32_t arg1, uint32_t arg2){
     return syscall(SYS_LSTAT, arg1, arg2, 0, 0, 0); 
+}
+
+/* Syscall: uname(1 arguments) */
+int sys_uname(uint32_t arg1){
+    return syscall(SYS_UNAME, arg1, 0, 0, 0, 0); 
 }
 

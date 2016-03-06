@@ -5,7 +5,6 @@
 #include "syscall_table.h"
 #include <errno.h>
 extern int sys_exec(char *cmd, char **args);
-extern int sys_execb(void (*init)(void **), void **args);
 
 int exec(char *cmd, char **args)
 {
@@ -26,10 +25,5 @@ int execvp(char *cmd, char *argv[])
 int execv(char *cmd, char *argv[])
 {
     return sys_exec(cmd, (char **)argv);
-}
-
-int execb(void (*init)(void**), void **args)
-{
-    return sys_execb(init, args);
 }
 
