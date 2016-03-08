@@ -318,3 +318,13 @@ int sys_uname(uint32_t arg1){
     return syscall(SYS_UNAME, arg1, 0, 0, 0, 0); 
 }
 
+/* Syscall: getaddrinfo(4 arguments) */
+int sys_getaddrinfo(uint32_t arg1, uint32_t arg2, uint32_t arg3, uint32_t arg4){
+    return syscall(SYS_GETADDRINFO, arg1, arg2, arg3, arg4, 0); 
+}
+
+/* Syscall: freeaddrinfo(1 arguments) */
+int sys_freeaddrinfo(uint32_t arg1){
+    return syscall(SYS_FREEADDRINFO, arg1, 0, 0, 0, 0); 
+}
+

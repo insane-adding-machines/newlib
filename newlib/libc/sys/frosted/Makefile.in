@@ -76,36 +76,36 @@ am_lib_a_OBJECTS = lib_a-accept.$(OBJEXT) lib_a-bind.$(OBJEXT) \
 	lib_a-dup.$(OBJEXT) lib_a-exec.$(OBJEXT) lib_a-exit.$(OBJEXT) \
 	lib_a-fgets.$(OBJEXT) lib_a-fork.$(OBJEXT) \
 	lib_a-free.$(OBJEXT) lib_a-fstat.$(OBJEXT) \
-	lib_a-getcwd.$(OBJEXT) lib_a-gethostname.$(OBJEXT) \
-	lib_a-getlogin.$(OBJEXT) lib_a-getpid.$(OBJEXT) \
-	lib_a-getppid.$(OBJEXT) lib_a-getsockopt.$(OBJEXT) \
-	lib_a-gettimeofday.$(OBJEXT) lib_a-grp.$(OBJEXT) \
-	lib_a-ioctl.$(OBJEXT) lib_a-isatty.$(OBJEXT) \
-	lib_a-kill.$(OBJEXT) lib_a-link.$(OBJEXT) \
-	lib_a-listen.$(OBJEXT) lib_a-lseek.$(OBJEXT) \
-	lib_a-malloc.$(OBJEXT) lib_a-malloc_trim.$(OBJEXT) \
-	lib_a-mkdir.$(OBJEXT) lib_a-mount.$(OBJEXT) \
-	lib_a-mutex.$(OBJEXT) lib_a-mutex_init.$(OBJEXT) \
-	lib_a-open.$(OBJEXT) lib_a-opendir.$(OBJEXT) \
-	lib_a-pipe.$(OBJEXT) lib_a-poll.$(OBJEXT) \
-	lib_a-printf.$(OBJEXT) lib_a-pwd.$(OBJEXT) \
-	lib_a-read.$(OBJEXT) lib_a-readdir.$(OBJEXT) \
-	lib_a-recvfrom.$(OBJEXT) lib_a-resource.$(OBJEXT) \
-	lib_a-semaphore.$(OBJEXT) lib_a-sem_init.$(OBJEXT) \
-	lib_a-sendto.$(OBJEXT) lib_a-setsockopt.$(OBJEXT) \
-	lib_a-shutdown.$(OBJEXT) lib_a-sigaction.$(OBJEXT) \
-	lib_a-signal.$(OBJEXT) lib_a-sigprocmask.$(OBJEXT) \
-	lib_a-sigsuspend.$(OBJEXT) lib_a-sleep.$(OBJEXT) \
-	lib_a-socket.$(OBJEXT) lib_a-stat.$(OBJEXT) \
-	lib_a-svc.$(OBJEXT) lib_a-syscall.$(OBJEXT) \
-	lib_a-syscalls.$(OBJEXT) lib_a-syscall_table.$(OBJEXT) \
-	lib_a-tcgetattr.$(OBJEXT) lib_a-tcsendbreak.$(OBJEXT) \
-	lib_a-tcsetattr.$(OBJEXT) lib_a-ttyname.$(OBJEXT) \
-	lib_a-uid.$(OBJEXT) lib_a-umask.$(OBJEXT) \
-	lib_a-umount.$(OBJEXT) lib_a-unlink.$(OBJEXT) \
-	lib_a-uname.$(OBJEXT) lib_a-vfork.$(OBJEXT) \
-	lib_a-wait.$(OBJEXT) lib_a-waitpid.$(OBJEXT) \
-	lib_a-write.$(OBJEXT)
+	lib_a-getaddrinfo.$(OBJEXT) lib_a-getcwd.$(OBJEXT) \
+	lib_a-gethostname.$(OBJEXT) lib_a-getlogin.$(OBJEXT) \
+	lib_a-getpid.$(OBJEXT) lib_a-getppid.$(OBJEXT) \
+	lib_a-getsockopt.$(OBJEXT) lib_a-gettimeofday.$(OBJEXT) \
+	lib_a-grp.$(OBJEXT) lib_a-inet.$(OBJEXT) lib_a-ioctl.$(OBJEXT) \
+	lib_a-isatty.$(OBJEXT) lib_a-kill.$(OBJEXT) \
+	lib_a-link.$(OBJEXT) lib_a-listen.$(OBJEXT) \
+	lib_a-lseek.$(OBJEXT) lib_a-malloc.$(OBJEXT) \
+	lib_a-malloc_trim.$(OBJEXT) lib_a-mkdir.$(OBJEXT) \
+	lib_a-mount.$(OBJEXT) lib_a-mutex.$(OBJEXT) \
+	lib_a-mutex_init.$(OBJEXT) lib_a-open.$(OBJEXT) \
+	lib_a-opendir.$(OBJEXT) lib_a-pipe.$(OBJEXT) \
+	lib_a-poll.$(OBJEXT) lib_a-printf.$(OBJEXT) \
+	lib_a-pwd.$(OBJEXT) lib_a-read.$(OBJEXT) \
+	lib_a-readdir.$(OBJEXT) lib_a-recvfrom.$(OBJEXT) \
+	lib_a-resource.$(OBJEXT) lib_a-semaphore.$(OBJEXT) \
+	lib_a-sem_init.$(OBJEXT) lib_a-sendto.$(OBJEXT) \
+	lib_a-setsockopt.$(OBJEXT) lib_a-shutdown.$(OBJEXT) \
+	lib_a-sigaction.$(OBJEXT) lib_a-signal.$(OBJEXT) \
+	lib_a-sigprocmask.$(OBJEXT) lib_a-sigsuspend.$(OBJEXT) \
+	lib_a-sleep.$(OBJEXT) lib_a-socket.$(OBJEXT) \
+	lib_a-stat.$(OBJEXT) lib_a-svc.$(OBJEXT) \
+	lib_a-syscall.$(OBJEXT) lib_a-syscalls.$(OBJEXT) \
+	lib_a-syscall_table.$(OBJEXT) lib_a-tcgetattr.$(OBJEXT) \
+	lib_a-tcsendbreak.$(OBJEXT) lib_a-tcsetattr.$(OBJEXT) \
+	lib_a-ttyname.$(OBJEXT) lib_a-uid.$(OBJEXT) \
+	lib_a-umask.$(OBJEXT) lib_a-umount.$(OBJEXT) \
+	lib_a-unlink.$(OBJEXT) lib_a-uname.$(OBJEXT) \
+	lib_a-vfork.$(OBJEXT) lib_a-wait.$(OBJEXT) \
+	lib_a-waitpid.$(OBJEXT) lib_a-write.$(OBJEXT)
 lib_a_OBJECTS = $(am_lib_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp =
@@ -219,7 +219,6 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
-runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -237,8 +236,9 @@ noinst_LIBRARIES = lib.a
 # crt0.o comes from libgloss
 lib_a_SOURCES = \
 	accept.c bind.c chdir.c chroot.c close.c closedir.c connect.c \
-	dup2.c dup.c exec.c exit.c fgets.c fork.c free.c fstat.c getcwd.c \
-	gethostname.c getlogin.c getpid.c getppid.c getsockopt.c gettimeofday.c grp.c ioctl.c \
+	dup2.c dup.c exec.c exit.c fgets.c fork.c free.c fstat.c getaddrinfo.c getcwd.c \
+	gethostname.c getlogin.c getpid.c getppid.c getsockopt.c gettimeofday.c grp.c \
+	inet.c ioctl.c \
 	isatty.c kill.c link.c listen.c lseek.c malloc.c malloc_trim.c mkdir.c \
 	mount.c mutex.c mutex_init.c open.c opendir.c pipe.c \
 	poll.c printf.c pwd.c read.c readdir.c recvfrom.c resource.c semaphore.c \
@@ -399,6 +399,12 @@ lib_a-fstat.o: fstat.c
 lib_a-fstat.obj: fstat.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-fstat.obj `if test -f 'fstat.c'; then $(CYGPATH_W) 'fstat.c'; else $(CYGPATH_W) '$(srcdir)/fstat.c'; fi`
 
+lib_a-getaddrinfo.o: getaddrinfo.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-getaddrinfo.o `test -f 'getaddrinfo.c' || echo '$(srcdir)/'`getaddrinfo.c
+
+lib_a-getaddrinfo.obj: getaddrinfo.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-getaddrinfo.obj `if test -f 'getaddrinfo.c'; then $(CYGPATH_W) 'getaddrinfo.c'; else $(CYGPATH_W) '$(srcdir)/getaddrinfo.c'; fi`
+
 lib_a-getcwd.o: getcwd.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-getcwd.o `test -f 'getcwd.c' || echo '$(srcdir)/'`getcwd.c
 
@@ -446,6 +452,12 @@ lib_a-grp.o: grp.c
 
 lib_a-grp.obj: grp.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-grp.obj `if test -f 'grp.c'; then $(CYGPATH_W) 'grp.c'; else $(CYGPATH_W) '$(srcdir)/grp.c'; fi`
+
+lib_a-inet.o: inet.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-inet.o `test -f 'inet.c' || echo '$(srcdir)/'`inet.c
+
+lib_a-inet.obj: inet.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-inet.obj `if test -f 'inet.c'; then $(CYGPATH_W) 'inet.c'; else $(CYGPATH_W) '$(srcdir)/inet.c'; fi`
 
 lib_a-ioctl.o: ioctl.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-ioctl.o `test -f 'ioctl.c' || echo '$(srcdir)/'`ioctl.c

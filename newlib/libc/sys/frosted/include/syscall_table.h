@@ -64,4 +64,6 @@
 #define SYS_WAITPID 			(60)
 #define SYS_LSTAT 			(61)
 #define SYS_UNAME 			(62)
-#define _SYSCALLS_NR (63) /* We have 63 syscalls! */
+#define SYS_GETADDRINFO 			(63)
+#define SYS_FREEADDRINFO 			(64)
+#define _SYSCALLS_NR (65) /* We have 65 syscalls! */
