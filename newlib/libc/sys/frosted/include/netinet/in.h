@@ -34,18 +34,19 @@ typedef uint32_t		socklen_t;
 
 /* Get machine dependent optimized versions of byte swapping functions.  */
 
-#if __BYTE_ORDER == __BIG_ENDIAN
+#if BYTE_ORDER == BIG_ENDIAN
 /* The host byte order is the same as network byte order,
    so these functions are all just identity.  */
 #define ntohl(x)	(x)
 #define ntohs(x)	(x)
 #define htonl(x)	(x)
 #define htons(x)	(x)
+#warning "BYTE ORDER IS BIG ENDIAN"
 #else
-#  define ntohl(x)	__bswap_32 (x)
-#  define ntohs(x)	__bswap_16 (x)
-#  define htonl(x)	__bswap_32 (x)
-#  define htons(x)	__bswap_16 (x)
+#   define htonl(x) __builtin_bswap32(x)
+#   define ntohl(x) __builtin_bswap32(x)
+#   define htons(x) __builtin_bswap16(x)
+#   define ntohs(x) __builtin_bswap16(x)
 #endif
 
 __BEGIN_DECLS
