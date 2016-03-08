@@ -8,7 +8,9 @@ mkdir -p build
 cd build
 mkdir -p lib
 
-CFLAGS_FOR_TARGET="-g -Os -mcpu=cortex-m3 -mthumb -mlittle-endian -mthumb-interwork -fPIC -mlong-calls -fno-common -msingle-pic-base -mno-pic-data-is-text-relative"
+#CFLAGS_FOR_TARGET="-g -Os -mcpu=cortex-m3 -mthumb -mlittle-endian -mthumb-interwork -fPIC -mlong-calls -fno-common -msingle-pic-base -mno-pic-data-is-text-relative -DREENTRANT_SYSCALLS_PROVIDED -D_REENT_ONLY"
+CFLAGS_FOR_TARGET="-g -Os -mcpu=cortex-m3 -mthumb -mlittle-endian -mthumb-interwork -fPIC -mlong-calls -fno-common -msingle-pic-base -mno-pic-data-is-text-relative -DREENTRANT_SYSCALLS_PROVIDED"
+ 
 export CFLAGS_FOR_TARGET
 
 CT_TARGET_ALIAS="arm-frosted"

@@ -3,8 +3,6 @@
 extern void exit(int code);
 extern int main ();
 extern void _init_signal();
-
-int errno;
  
 /* no argv, argc for now */
 void _start(char *argv[]) {

@@ -19,7 +19,7 @@ details. */
    includes the W32api winsock[2].h header must know what it is doing;
    it must not call the Cygwin select function.
 */
-# if !(defined (_POSIX_SOURCE) || defined (_WINSOCK_H) || defined (_WINSOCKAPI_) || defined (__USE_W32_SOCKETS))
+# if !(defined (_POSIX_SOURCE) || defined (_WINSOCK_H) || defined (_WINSOCKAPI_) || defined (__USE_W32_SOCKETS)) || defined(__frosted__)
 
 #include <sys/cdefs.h>
 

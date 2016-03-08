@@ -73,14 +73,15 @@ am_lib_a_OBJECTS = lib_a-accept.$(OBJEXT) lib_a-bind.$(OBJEXT) \
 	lib_a-chdir.$(OBJEXT) lib_a-chroot.$(OBJEXT) \
 	lib_a-close.$(OBJEXT) lib_a-closedir.$(OBJEXT) \
 	lib_a-connect.$(OBJEXT) lib_a-dup2.$(OBJEXT) \
-	lib_a-dup.$(OBJEXT) lib_a-exec.$(OBJEXT) lib_a-exit.$(OBJEXT) \
-	lib_a-fgets.$(OBJEXT) lib_a-fork.$(OBJEXT) \
-	lib_a-free.$(OBJEXT) lib_a-fstat.$(OBJEXT) \
-	lib_a-getaddrinfo.$(OBJEXT) lib_a-getcwd.$(OBJEXT) \
-	lib_a-gethostname.$(OBJEXT) lib_a-getlogin.$(OBJEXT) \
-	lib_a-getpid.$(OBJEXT) lib_a-getppid.$(OBJEXT) \
-	lib_a-getsockopt.$(OBJEXT) lib_a-gettimeofday.$(OBJEXT) \
-	lib_a-grp.$(OBJEXT) lib_a-inet.$(OBJEXT) lib_a-ioctl.$(OBJEXT) \
+	lib_a-dup.$(OBJEXT) lib_a-errno.$(OBJEXT) lib_a-exec.$(OBJEXT) \
+	lib_a-exit.$(OBJEXT) lib_a-fgets.$(OBJEXT) \
+	lib_a-fork.$(OBJEXT) lib_a-free.$(OBJEXT) \
+	lib_a-fstat.$(OBJEXT) lib_a-getaddrinfo.$(OBJEXT) \
+	lib_a-getcwd.$(OBJEXT) lib_a-gethostname.$(OBJEXT) \
+	lib_a-getlogin.$(OBJEXT) lib_a-getpid.$(OBJEXT) \
+	lib_a-getppid.$(OBJEXT) lib_a-getsockopt.$(OBJEXT) \
+	lib_a-gettimeofday.$(OBJEXT) lib_a-grp.$(OBJEXT) \
+	lib_a-inet.$(OBJEXT) lib_a-ioctl.$(OBJEXT) \
 	lib_a-isatty.$(OBJEXT) lib_a-kill.$(OBJEXT) \
 	lib_a-link.$(OBJEXT) lib_a-listen.$(OBJEXT) \
 	lib_a-lseek.$(OBJEXT) lib_a-malloc.$(OBJEXT) \
@@ -236,10 +237,10 @@ noinst_LIBRARIES = lib.a
 # crt0.o comes from libgloss
 lib_a_SOURCES = \
 	accept.c bind.c chdir.c chroot.c close.c closedir.c connect.c \
-	dup2.c dup.c exec.c exit.c fgets.c fork.c free.c fstat.c getaddrinfo.c getcwd.c \
+	dup2.c dup.c errno.c exec.c exit.c fgets.c fork.c free.c fstat.c getaddrinfo.c getcwd.c \
 	gethostname.c getlogin.c getpid.c getppid.c getsockopt.c gettimeofday.c grp.c \
 	inet.c ioctl.c \
-	isatty.c kill.c link.c listen.c lseek.c malloc.c malloc_trim.c mkdir.c \
+	isatty.c kill.c link.c listen.c  lseek.c malloc.c malloc_trim.c mkdir.c \
 	mount.c mutex.c mutex_init.c open.c opendir.c pipe.c \
 	poll.c printf.c pwd.c read.c readdir.c recvfrom.c resource.c semaphore.c \
 	sem_init.c sendto.c setsockopt.c shutdown.c sigaction.c signal.c sigprocmask.c \
@@ -362,6 +363,12 @@ lib_a-dup.o: dup.c
 
 lib_a-dup.obj: dup.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-dup.obj `if test -f 'dup.c'; then $(CYGPATH_W) 'dup.c'; else $(CYGPATH_W) '$(srcdir)/dup.c'; fi`
+
+lib_a-errno.o: errno.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-errno.o `test -f 'errno.c' || echo '$(srcdir)/'`errno.c
+
+lib_a-errno.obj: errno.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-errno.obj `if test -f 'errno.c'; then $(CYGPATH_W) 'errno.c'; else $(CYGPATH_W) '$(srcdir)/errno.c'; fi`
 
 lib_a-exec.o: exec.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-exec.o `test -f 'exec.c' || echo '$(srcdir)/'`exec.c

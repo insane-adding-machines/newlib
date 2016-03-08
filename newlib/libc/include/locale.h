@@ -50,10 +50,8 @@ struct lconv
   char int_p_sign_posn;
 };
 
-#ifndef _REENT_ONLY
 char *_EXFUN(setlocale,(int category, const char *locale));
 struct lconv *_EXFUN(localeconv,(void));
-#endif
 
 struct _reent;
 char *_EXFUN(_setlocale_r,(struct _reent *, int category, const char *locale));

@@ -226,6 +226,21 @@ enum
 #define INADDR_ALLRTRS_GROUP    ((in_addr_t) 0xe0000002) /* 224.0.0.2 */
 #define INADDR_MAX_LOCAL_GROUP  ((in_addr_t) 0xe00000ff) /* 224.0.0.255 */
 
+/* Frosted: socketopt defines */
+#define IP_MULTICAST_LOOP   (34)
+#define IP_MULTICAST_TTL    (33)
+#define IP_MULTICAST_IF     (32)
+#define IP_ADD_MEMBERSHIP   (35)
+#define IP_DROP_MEMBERSHIP  (36)
+#define SO_RCVBUF           (52)
+#define SO_SNDBUF           (53)
+#define TCP_NODELAY         (1)
+#define TCP_KEEPCNT         (6)
+#define TCP_KEEPIDLE        (4)
+#define TCP_KEEPINTVL       (5)
+#define TCP_LINGER          (13)
+
+
 #ifndef HAVE_STRUCT_IN6_ADDR
 #define HAVE_STRUCT_IN6_ADDR
 /* IPv6 address */
