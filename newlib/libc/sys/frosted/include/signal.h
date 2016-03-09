@@ -44,6 +44,7 @@
 #define SIGUNUSED   31
 #define SIGMAX      32
 #define _N_SIG      32
+#define NSIG        _N_SIG
 
 
 typedef uint32_t sigset_t;
@@ -55,6 +56,15 @@ typedef uint32_t sigset_t;
 
 #define SIG_DFL ((void (*)(int)) 0)
 #define SIG_IGN ((void (*)(int)) 0xFFFFFFFF)
+
+#define SA_NOCLDSTOP 1   		/* Do not generate SIGCHLD */
+#define SA_SIGINFO   2   		/* Invoke the signal catching function */
+#define SA_RESTART   0x10000000 	/* Restart syscall on signal return */
+#define SA_ONSTACK   0x20000000		/* Call signal handler on alternate signal stack provided by sigaltstack(2). */
+#define SA_NODEFER   0x40000000		/* Don't automatically block the signal when its handler is being executed  */
+#define SA_RESETHAND 0x80000000		/* Reset to SIG_DFL on entry to handler */
+#define SA_ONESHOT   SA_RESETHAND	/* Historical linux name */
+#define SA_NOMASK    SA_NODEFER		/* Historical linux name */
 
 union sigval {
   int    sival_int;    /* Integer signal value */

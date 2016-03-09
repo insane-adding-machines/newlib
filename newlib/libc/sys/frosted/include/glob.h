@@ -67,6 +67,12 @@ typedef struct {
 #define	GLOB_NOCHECK	0x0010	/* Return pattern itself if nothing matches. */
 #define	GLOB_NOSORT	0x0020	/* Don't sort. */
 
+/* Error values returned by glob(3) */
+#define	GLOB_NOSPACE	(-1)	/* Malloc call failed. */
+#define	GLOB_ABORTED	(-2)	/* Unignored error. */
+#define	GLOB_NOMATCH	(-3)	/* No match and GLOB_NOCHECK was not set. */
+#define	GLOB_NOSYS	(-4)	/* Obsolete: source comptability only. */
+
 #define	GLOB_ALTDIRFUNC	0x0040	/* Use alternately specified directory funcs. */
 #define	GLOB_BRACE	0x0080	/* Expand braces ala csh. */
 #define	GLOB_MAGCHAR	0x0100	/* Pattern had globbing characters. */
@@ -77,9 +83,10 @@ typedef struct {
 
 /* backwards compatibility, this is the old name for this option */
 #define GLOB_MAXPATH	GLOB_LIMIT
+/* source compatibility, these are the old names */
+#define GLOB_MAXPATH	GLOB_LIMIT
+#define	GLOB_ABEND	GLOB_ABORTED
 
-#define	GLOB_NOSPACE	(-1)	/* Malloc call failed. */
-#define	GLOB_ABEND	(-2)	/* Unignored error. */
 
 __BEGIN_DECLS
 int	glob(const char *, int, int (*)(const char *, int), glob_t *);
