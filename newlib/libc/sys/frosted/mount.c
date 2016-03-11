@@ -18,14 +18,3 @@ int mount(char * source, char *target, char *module, unsigned long flags, void *
 }
 
 
-int umount(const char *target)
-{
-    errno = ENOSYS;
-    return -1;
-}
-
-int umount2(const char *target, int flags)
-{
-    errno = ENOSYS;
-    return -1;
-}
