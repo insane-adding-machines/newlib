@@ -10,8 +10,8 @@ noinst_LIBRARIES = lib.a
 
 # crt0.o comes from libgloss
 lib_a_SOURCES = \
-	accept.c bind.c chdir.c chroot.c close.c closedir.c connect.c \
-	dup2.c dup.c errno.c exec.c exit.c fgets.c fork.c free.c fstat.c getaddrinfo.c getcwd.c \
+	accept.c bind.c chdir.c close.c closedir.c connect.c dirname.c\
+	dup2.c dup.c errno.c exec.c exit.c fgets.c free.c fstat.c getaddrinfo.c getcwd.c \
 	gethostname.c getlogin.c getpid.c getppid.c getsockopt.c gettimeofday.c grp.c \
 	inet.c ioctl.c \
 	isatty.c kill.c link.c listen.c  lseek.c malloc.c malloc_trim.c mkdir.c \
