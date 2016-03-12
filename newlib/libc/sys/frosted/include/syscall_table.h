@@ -66,4 +66,5 @@
 #define SYS_UNAME 			(62)
 #define SYS_GETADDRINFO 			(63)
 #define SYS_FREEADDRINFO 			(64)
-#define _SYSCALLS_NR (65) /* We have 65 syscalls! */
+#define SYS_FSTAT 			(65)
+#define _SYSCALLS_NR (66) /* We have 65 syscalls! */
