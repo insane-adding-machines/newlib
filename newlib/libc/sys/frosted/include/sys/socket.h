@@ -60,6 +60,8 @@ typedef uint16_t 		sa_family_t;
 typedef uint32_t		__socklen_t;
 typedef uint32_t		socklen_t;
 #endif
+
+typedef uint16_t        u_short;
  
 /*
  * Types
