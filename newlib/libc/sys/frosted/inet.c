@@ -9,6 +9,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
+#include <string.h>
 static inline int is_digit(char c)
 {
     if (c < '0' || c > '9')
@@ -96,4 +97,26 @@ char *inet_ntoa(struct in_addr in)
 
     return &inet_ntoa_result;
 }
+
+const char *inet_ntop(int af, const void *src, char *dst, socklen_t size)
+{
+
+    if (af == AF_INET) {
+        struct sockaddr_in *addr = (struct sockaddr_in *)src;
+        char *res = inet_ntoa(addr->sin_addr);
+        if (!res) {
+            return NULL;
+        }
+        if ((strlen(res) + 1) > size) {
+            errno = ENOBUFS;
+            return NULL;
+        }
+        strcpy(dst, res);
+        return dst;
+    } else  {
+        errno = EFAULT;
+        return NULL;
+    }
+}
+
 

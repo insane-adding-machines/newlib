@@ -1,22 +1,21 @@
 /*
-* Frosted version of recvfrom
+* Frosted version of getsockname
 */
 
 
 #include "syscall_table.h"
-#include <errno.h>
 #include <netinet/in.h>
+#include <errno.h>
 #include <string.h>
-extern int sys_recvfrom(int sd, void *buf, unsigned int len, int flags, struct sockaddr_env *se);
+extern int sys_getsockname(int sd, struct sockaddr_env *se);
 
-
-int recvfrom(int sd, void *buf, size_t len, int flags, struct sockaddr *sa, socklen_t *socklen)
+int getsockname(int sd, struct sockaddr *sa, socklen_t *socklen)
 {
     struct sockaddr_env se;
     int ret;
     se.se_addr = sa;
     se.se_len = *socklen;
-    ret = sys_recvfrom(sd, buf, len, flags, &se);
+    ret =  sys_getsockname(sd, &se);
     if (ret > 0) {
         if (*socklen < se.se_len) {
             errno = EPROTONOSUPPORT;
@@ -30,9 +29,4 @@ int recvfrom(int sd, void *buf, size_t len, int flags, struct sockaddr *sa, sock
         ret = -1;
     }
     return ret;
-}
-
-int recv(int sd, void *buf, size_t len, int flags)
-{
-    return recvfrom(sd, buf, len, flags, NULL, NULL);
 }

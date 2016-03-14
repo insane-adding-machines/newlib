@@ -22,3 +22,8 @@ ssize_t	sendto(int sd, const void *buf, size_t len, int flags, const struct sock
     }
     return ret;
 }
+
+ssize_t	send(int sd, const void *buf, size_t len, int flags)
+{
+    return sendto(sd, buf, len, flags, NULL, 0);
+}
