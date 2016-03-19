@@ -174,26 +174,6 @@ int nanosleep(const struct timespec *req, struct timespec *rem)
 }
 
 /*
- * Frosted version of readlink (STUB).
- */
-
-ssize_t readlink(const char *path, char *buf, size_t bufsiz)
-{
-    errno = ENOSYS;
-    return -1;
-}
-
-/*
- * Frosted version of realpath (STUB).
- */
-
-char *realpath(const char *path, char *resolved_path)
-{
-    errno = ENOSYS;
-    return -1;
-}
-
-/*
  * Frosted version of regcomp (STUB).
  */
 #include <regex.h>

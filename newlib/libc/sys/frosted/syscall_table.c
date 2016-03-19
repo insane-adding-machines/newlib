@@ -343,3 +343,8 @@ int sys_getpeername(uint32_t arg1, uint32_t arg2){
     return syscall(SYS_GETPEERNAME, arg1, arg2, 0, 0, 0); 
 }
 
+/* Syscall: readlink(3 arguments) */
+int sys_readlink(uint32_t arg1, uint32_t arg2, uint32_t arg3){
+    return syscall(SYS_READLINK, arg1, arg2, arg3, 0,  0); 
+}
+

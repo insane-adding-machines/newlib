@@ -20,7 +20,7 @@ lib_a_SOURCES = \
 	sem_init.c sendto.c setsockopt.c shutdown.c sigaction.c signal.c sigprocmask.c \
 	sigsuspend.c sleep.c socket.c stat.c svc.s syscall.c syscalls.c syscall_table.c tcgetattr.c \
 	tcsendbreak.c tcsetattr.c ttyname.c uid.c umask.c \
-	umount.c unlink.c uname.c vfork.c wait.c waitpid.c write.c stubs.c
+	umount.c unlink.c uname.c vfork.c wait.c waitpid.c write.c stubs.c readlink.c realpath.c
 
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
 lib_a_CFLAGS = $(AM_CFLAGS)
