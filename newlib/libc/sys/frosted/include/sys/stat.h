@@ -60,7 +60,7 @@ struct	stat
 #endif
 };
 
-#if defined(__rtems__)
+#if defined(__rtems__) || defined (__frosted__)
 #define st_atime st_atim.tv_sec
 #define st_ctime st_ctim.tv_sec
 #define st_mtime st_mtim.tv_sec
