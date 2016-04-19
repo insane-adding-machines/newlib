@@ -348,3 +348,8 @@ int sys_readlink(uint32_t arg1, uint32_t arg2, uint32_t arg3){
     return syscall(SYS_READLINK, arg1, arg2, arg3, 0,  0); 
 }
 
+/* Syscall: fcntl(3 arguments) */
+int sys_fcntl(uint32_t arg1, uint32_t arg2, uint32_t arg3){
+    return syscall(SYS_FCNTL, arg1, arg2, arg3, 0,  0); 
+}
+

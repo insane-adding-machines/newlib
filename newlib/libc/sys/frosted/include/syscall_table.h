@@ -70,4 +70,5 @@
 #define SYS_GETSOCKNAME 			(66)
 #define SYS_GETPEERNAME 			(67)
 #define SYS_READLINK 			(68)
-#define _SYSCALLS_NR (69) /* We have 69 syscalls! */
+#define SYS_FCNTL 			(69)
+#define _SYSCALLS_NR (70) /* We have 70 syscalls! */

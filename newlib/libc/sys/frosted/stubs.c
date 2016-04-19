@@ -39,15 +39,6 @@ int clearenv(void)
     return -1;
 }
 
-/*
- * Frosted version of fcntl (STUB).
- */
-
-int fcntl(int fildes, int cmd, ...)
-{
-    errno = ENOSYS;
-    return -1;
-}
 
 /*
  * Frosted version of fnmatch (STUB).

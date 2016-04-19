@@ -75,13 +75,13 @@ am_lib_a_OBJECTS = lib_a-accept.$(OBJEXT) lib_a-bind.$(OBJEXT) \
 	lib_a-dirname.$(OBJEXT) lib_a-dup2.$(OBJEXT) \
 	lib_a-dup.$(OBJEXT) lib_a-errno.$(OBJEXT) lib_a-exec.$(OBJEXT) \
 	lib_a-exit.$(OBJEXT) lib_a-fgets.$(OBJEXT) \
-	lib_a-free.$(OBJEXT) lib_a-getaddrinfo.$(OBJEXT) \
-	lib_a-getcwd.$(OBJEXT) lib_a-gethostname.$(OBJEXT) \
-	lib_a-getlogin.$(OBJEXT) lib_a-getpeername.$(OBJEXT) \
-	lib_a-getpid.$(OBJEXT) lib_a-getppid.$(OBJEXT) \
-	lib_a-getsockname.$(OBJEXT) lib_a-getsockopt.$(OBJEXT) \
-	lib_a-gettimeofday.$(OBJEXT) lib_a-grp.$(OBJEXT) \
-	lib_a-inet.$(OBJEXT) lib_a-ioctl.$(OBJEXT) \
+	lib_a-free.$(OBJEXT) lib_a-fcntl.$(OBJEXT) \
+	lib_a-getaddrinfo.$(OBJEXT) lib_a-getcwd.$(OBJEXT) \
+	lib_a-gethostname.$(OBJEXT) lib_a-getlogin.$(OBJEXT) \
+	lib_a-getpeername.$(OBJEXT) lib_a-getpid.$(OBJEXT) \
+	lib_a-getppid.$(OBJEXT) lib_a-getsockname.$(OBJEXT) \
+	lib_a-getsockopt.$(OBJEXT) lib_a-gettimeofday.$(OBJEXT) \
+	lib_a-grp.$(OBJEXT) lib_a-inet.$(OBJEXT) lib_a-ioctl.$(OBJEXT) \
 	lib_a-isatty.$(OBJEXT) lib_a-kill.$(OBJEXT) \
 	lib_a-link.$(OBJEXT) lib_a-listen.$(OBJEXT) \
 	lib_a-lseek.$(OBJEXT) lib_a-malloc.$(OBJEXT) \
@@ -239,7 +239,7 @@ noinst_LIBRARIES = lib.a
 # crt0.o comes from libgloss
 lib_a_SOURCES = \
 	accept.c bind.c chdir.c close.c closedir.c connect.c dirname.c\
-	dup2.c dup.c errno.c exec.c exit.c fgets.c free.c getaddrinfo.c getcwd.c \
+	dup2.c dup.c errno.c exec.c exit.c fgets.c free.c fcntl.c getaddrinfo.c getcwd.c \
 	gethostname.c getlogin.c getpeername.c getpid.c getppid.c getsockname.c getsockopt.c gettimeofday.c grp.c \
 	inet.c ioctl.c \
 	isatty.c kill.c link.c listen.c  lseek.c malloc.c malloc_trim.c mkdir.c \
@@ -395,6 +395,12 @@ lib_a-free.o: free.c
 
 lib_a-free.obj: free.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-free.obj `if test -f 'free.c'; then $(CYGPATH_W) 'free.c'; else $(CYGPATH_W) '$(srcdir)/free.c'; fi`
+
+lib_a-fcntl.o: fcntl.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-fcntl.o `test -f 'fcntl.c' || echo '$(srcdir)/'`fcntl.c
+
+lib_a-fcntl.obj: fcntl.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-fcntl.obj `if test -f 'fcntl.c'; then $(CYGPATH_W) 'fcntl.c'; else $(CYGPATH_W) '$(srcdir)/fcntl.c'; fi`
 
 lib_a-getaddrinfo.o: getaddrinfo.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-getaddrinfo.o `test -f 'getaddrinfo.c' || echo '$(srcdir)/'`getaddrinfo.c
