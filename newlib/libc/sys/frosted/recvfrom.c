@@ -14,10 +14,14 @@ int recvfrom(int sd, void *buf, size_t len, int flags, struct sockaddr *sa, sock
 {
     struct sockaddr_env se;
     int ret;
-    se.se_addr = sa;
-    se.se_len = *socklen;
-    ret = sys_recvfrom(sd, buf, len, flags, &se);
-    if (ret > 0) {
+    if (sa) {
+        se.se_addr = sa;
+        se.se_len = *socklen;
+        ret = sys_recvfrom(sd, buf, len, flags, &se);
+    } else {
+        ret = sys_recvfrom(sd, buf, len, flags, NULL);
+    }
+    if (sa && ret > 0) {
         if (*socklen < se.se_len) {
             errno = EPROTONOSUPPORT;
             return -1;

@@ -13,9 +13,13 @@ ssize_t	sendto(int sd, const void *buf, size_t len, int flags, const struct sock
 {
     struct sockaddr_env se;
     int ret;
-    se.se_addr = sa;
-    se.se_len = socklen;
-    ret = sys_sendto(sd, buf, len, flags, &se);
+    if (sa) {
+        se.se_addr = sa;
+        se.se_len = socklen;
+        ret = sys_sendto(sd, buf, len, flags, &se);
+    } else {
+        ret = sys_sendto(sd, buf, len, flags, NULL);
+    }
     if (ret < 0) {
         errno = 0 - ret;
         ret = -1;
