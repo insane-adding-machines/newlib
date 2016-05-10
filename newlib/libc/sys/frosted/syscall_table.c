@@ -353,3 +353,8 @@ int sys_fcntl(uint32_t arg1, uint32_t arg2, uint32_t arg3){
     return syscall(SYS_FCNTL, arg1, arg2, arg3, 0,  0); 
 }
 
+/* Syscall: setsid(0 arguments) */
+int sys_setsid(void){
+    return syscall(SYS_SETSID, 0, 0, 0, 0, 0); 
+}
+

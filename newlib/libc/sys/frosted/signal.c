@@ -1,11 +1,14 @@
 #include <stdint.h>
 #include <signal.h>
+#include <unistd.h>
 
-/* TODO: STUB */
 typedef void (*sighandler_t)(int);
 sighandler_t signal(int signum, sighandler_t handler)
 {
-    return (sighandler_t)NULL;
+    struct sigaction sa = {};
+    sa.sa_handler = handler;
+    if (sigaction(signum, &sa, NULL) == 0)
+        return handler;
 }
 
 int sigemptyset(sigset_t *set)
