@@ -68,7 +68,7 @@ int inet_aton(const char *ipstr, struct in_addr *ia)
 
 static char inet_ntoa_result[20] = "";
 
-char *inet_ntoa(struct in_addr in) 
+char *inet_ntoa(struct in_addr in)
 {
     const unsigned char *addr = (const unsigned char *) &in.s_addr;
     char *ipbuf = (char *) inet_ntoa_result;
@@ -119,4 +119,40 @@ const char *inet_ntop(int af, const void *src, char *dst, socklen_t size)
     }
 }
 
+in_addr_t inet_addr(const char *__cp)
+{
+    in_addr_t ip = 0;
+    char delim = '.';
 
+    char *ptr = malloc(sizeof(char) * INET_ADDRSTRLEN);
+    strncpy(ptr, __cp, INET_ADDRSTRLEN);
+
+    for (int i = 0; i < 4; i++) {
+        char *cp;
+
+        if (i == 0) {
+            cp = strtok(ptr, &delim);
+        } else {
+            cp = strtok(NULL, &delim);
+        }
+
+        if (cp == NULL) {
+            free(ptr);
+            return INADDR_NONE;
+        }
+
+        int byte = atoi(cp);
+
+        if ((byte < 0) || (byte > 255)) {
+            free(ptr);
+            return INADDR_NONE;
+        }
+
+        ip += (byte << ((3 - i) * 8));
+    }
+
+    ip = htonl(ip);
+    free(ptr);
+
+    return ip;
+}
