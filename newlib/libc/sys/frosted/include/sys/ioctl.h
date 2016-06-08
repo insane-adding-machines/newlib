@@ -87,5 +87,12 @@ struct winsize
 #define IOCTL_LSM303DLHC_WRITE_CTRL_REG     0
 #define IOCTL_LSM303DLHC_READ_CTRL_REG      1
 
+/* Framebuffer */
+#define IOCTL_FB_GET_VSCREENINFO     0x00
+#define IOCTL_FB_PUT_VSCREENINFO     0x01
+#define IOCTL_FB_GET_FSCREENINFO     0x02
+#define IOCTL_FB_GETCMAP             0x04
+#define IOCTL_FB_PUTCMAP             0x05
+
 
 #endif
