@@ -2,7 +2,7 @@
  * Frosted version of stat.
  */
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <errno.h>
 #include <sys/stat.h>
 extern int sys_stat(char * file, struct stat *st);

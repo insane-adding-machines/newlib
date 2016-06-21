@@ -3,7 +3,7 @@
 */
 
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <errno.h>
 extern int sys_pipe2(int fd[2], int flags);
 

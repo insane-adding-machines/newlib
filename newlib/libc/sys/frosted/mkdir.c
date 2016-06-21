@@ -2,7 +2,7 @@
  * Frosted version of mkdir.
  */
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include "sys/types.h"
 #include <errno.h>
 extern int sys_mkdir(const char *path, mode_t mode);

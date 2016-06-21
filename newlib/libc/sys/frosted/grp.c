@@ -3,7 +3,7 @@
 * Frosted stubs for group functions
 */
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include "grp.h"
 #include <errno.h>
 

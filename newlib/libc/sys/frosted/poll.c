@@ -2,7 +2,7 @@
  * Frosted version of poll.
  */
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <errno.h>
 
 struct pollfd;

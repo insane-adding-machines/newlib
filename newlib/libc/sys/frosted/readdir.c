@@ -2,7 +2,7 @@
  * Frosted version of readdir.
  */
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <dirent.h>
 #include <errno.h>
 extern int sys_readdir(DIR *d, struct dirent *ep);

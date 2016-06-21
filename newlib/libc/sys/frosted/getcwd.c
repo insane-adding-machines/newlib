@@ -2,7 +2,7 @@
  * Frosted version of getcwd.
  */
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <errno.h>
 extern char * sys_getcwd(char *, int);
 

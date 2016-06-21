@@ -2,7 +2,7 @@
  * Frosted version of mount.
  */
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <errno.h>
 extern int sys_mount(char * source, char *target, char *module, unsigned long flags, void *args);
 

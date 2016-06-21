@@ -3,7 +3,7 @@
 */
 
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <netinet/in.h>
 #include <errno.h>
 extern int sys_bind(int sd, struct sockaddr_env *se);

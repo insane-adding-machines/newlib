@@ -4,7 +4,7 @@
 */
 
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <errno.h>
 
 static char * username = "root";

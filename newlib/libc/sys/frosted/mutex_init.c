@@ -2,7 +2,7 @@
  * Frosted version of mutex_init.
  */
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <errno.h>
 #include <semaphore.h>
 

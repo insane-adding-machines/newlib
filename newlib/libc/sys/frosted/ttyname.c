@@ -2,7 +2,7 @@
  * Frosted version of ttyname.
  */
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <errno.h>
 extern int sys_ttyname_r(int file, void *ptr, int len);
 

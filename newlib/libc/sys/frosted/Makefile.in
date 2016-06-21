@@ -101,15 +101,15 @@ am_lib_a_OBJECTS = lib_a-accept.$(OBJEXT) lib_a-bind.$(OBJEXT) \
 	lib_a-sleep.$(OBJEXT) lib_a-socket.$(OBJEXT) \
 	lib_a-stat.$(OBJEXT) lib_a-svc.$(OBJEXT) \
 	lib_a-syscall.$(OBJEXT) lib_a-syscalls.$(OBJEXT) \
-	lib_a-syscall_table.$(OBJEXT) lib_a-tcgetattr.$(OBJEXT) \
-	lib_a-tcsendbreak.$(OBJEXT) lib_a-tcsetattr.$(OBJEXT) \
-	lib_a-ttyname.$(OBJEXT) lib_a-uid.$(OBJEXT) \
-	lib_a-umask.$(OBJEXT) lib_a-umount.$(OBJEXT) \
-	lib_a-unlink.$(OBJEXT) lib_a-uname.$(OBJEXT) \
-	lib_a-vfork.$(OBJEXT) lib_a-wait.$(OBJEXT) \
-	lib_a-waitpid.$(OBJEXT) lib_a-write.$(OBJEXT) \
-	lib_a-stubs.$(OBJEXT) lib_a-readlink.$(OBJEXT) \
-	lib_a-realpath.$(OBJEXT)
+	lib_a-tcgetattr.$(OBJEXT) lib_a-tcsendbreak.$(OBJEXT) \
+	lib_a-tcsetattr.$(OBJEXT) lib_a-ttyname.$(OBJEXT) \
+	lib_a-uid.$(OBJEXT) lib_a-umask.$(OBJEXT) \
+	lib_a-umount.$(OBJEXT) lib_a-unlink.$(OBJEXT) \
+	lib_a-uname.$(OBJEXT) lib_a-vfork.$(OBJEXT) \
+	lib_a-wait.$(OBJEXT) lib_a-waitpid.$(OBJEXT) \
+	lib_a-write.$(OBJEXT) lib_a-stubs.$(OBJEXT) \
+	lib_a-readlink.$(OBJEXT) lib_a-realpath.$(OBJEXT) \
+	lib_a-frosted_syscalls.$(OBJEXT)
 lib_a_OBJECTS = $(am_lib_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp =
@@ -247,9 +247,10 @@ lib_a_SOURCES = \
 	mount.c mutex.c mutex_init.c open.c opendir.c pipe.c \
 	poll.c printf.c pwd.c read.c readdir.c recvfrom.c resource.c select.c semaphore.c \
 	sem_init.c sendto.c setsid.c setsockopt.c shutdown.c sigaction.c signal.c sigprocmask.c \
-	sigsuspend.c sleep.c socket.c stat.c svc.s syscall.c syscalls.c syscall_table.c tcgetattr.c \
+	sigsuspend.c sleep.c socket.c stat.c svc.s syscall.c syscalls.c tcgetattr.c \
 	tcsendbreak.c tcsetattr.c ttyname.c uid.c umask.c \
-	umount.c unlink.c uname.c vfork.c wait.c waitpid.c write.c stubs.c readlink.c realpath.c
+	umount.c unlink.c uname.c vfork.c wait.c waitpid.c write.c stubs.c readlink.c realpath.c \
+	frosted-headers/sys/frosted_syscalls.c 
 
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
 lib_a_CFLAGS = $(AM_CFLAGS)
@@ -703,12 +704,6 @@ lib_a-syscalls.o: syscalls.c
 lib_a-syscalls.obj: syscalls.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-syscalls.obj `if test -f 'syscalls.c'; then $(CYGPATH_W) 'syscalls.c'; else $(CYGPATH_W) '$(srcdir)/syscalls.c'; fi`
 
-lib_a-syscall_table.o: syscall_table.c
-	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-syscall_table.o `test -f 'syscall_table.c' || echo '$(srcdir)/'`syscall_table.c
-
-lib_a-syscall_table.obj: syscall_table.c
-	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-syscall_table.obj `if test -f 'syscall_table.c'; then $(CYGPATH_W) 'syscall_table.c'; else $(CYGPATH_W) '$(srcdir)/syscall_table.c'; fi`
-
 lib_a-tcgetattr.o: tcgetattr.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-tcgetattr.o `test -f 'tcgetattr.c' || echo '$(srcdir)/'`tcgetattr.c
 
@@ -804,6 +799,12 @@ lib_a-realpath.o: realpath.c
 
 lib_a-realpath.obj: realpath.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-realpath.obj `if test -f 'realpath.c'; then $(CYGPATH_W) 'realpath.c'; else $(CYGPATH_W) '$(srcdir)/realpath.c'; fi`
+
+lib_a-frosted_syscalls.o: frosted-headers/sys/frosted_syscalls.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-frosted_syscalls.o `test -f 'frosted-headers/sys/frosted_syscalls.c' || echo '$(srcdir)/'`frosted-headers/sys/frosted_syscalls.c
+
+lib_a-frosted_syscalls.obj: frosted-headers/sys/frosted_syscalls.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-frosted_syscalls.obj `if test -f 'frosted-headers/sys/frosted_syscalls.c'; then $(CYGPATH_W) 'frosted-headers/sys/frosted_syscalls.c'; else $(CYGPATH_W) '$(srcdir)/frosted-headers/sys/frosted_syscalls.c'; fi`
 
 .s.o:
 	$(CCASCOMPILE) -c -o $@ $<

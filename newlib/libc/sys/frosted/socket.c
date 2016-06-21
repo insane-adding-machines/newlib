@@ -2,7 +2,7 @@
  * Frosted version of socket.
  */
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <errno.h>
 extern int sys_socket(int, int, int);
 

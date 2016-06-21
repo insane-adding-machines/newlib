@@ -2,7 +2,7 @@
  * Frosted version of ioctl.
  */
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <errno.h>
 extern int sys_ioctl(int fd, const unsigned long cmd, void *arg);
 

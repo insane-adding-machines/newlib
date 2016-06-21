@@ -2,7 +2,7 @@
  * Frosted version of uname.
  */
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <errno.h>
 #include <sys/utsname.h>
 extern int sys_uname(struct utsname *u);

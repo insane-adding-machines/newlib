@@ -2,7 +2,7 @@
  * Frosted version of opendir.
  */
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <errno.h>
 #include <dirent.h>
 extern DIR *sys_opendir(const char *path);

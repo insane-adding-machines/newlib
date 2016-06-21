@@ -3,7 +3,7 @@
 */
 
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include "sys/types.h"
 #include <errno.h>
 

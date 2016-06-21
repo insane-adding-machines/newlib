@@ -2,7 +2,7 @@
  * Frosted version of closedir.
  */
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <errno.h>
 #include <dirent.h>
 extern int sys_closedir(DIR *d);

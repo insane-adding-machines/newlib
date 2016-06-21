@@ -2,7 +2,7 @@
  * Frosted version of umount.
  */
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <errno.h>
 extern int sys_umount(char *target, unsigned long flags);
 

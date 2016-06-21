@@ -3,7 +3,7 @@
 */
 
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <sys/socket.h>
 #include <errno.h>
 extern int sys_sendto(int sd, const void *buf, unsigned int len, int flags, struct sockaddr_env *se);

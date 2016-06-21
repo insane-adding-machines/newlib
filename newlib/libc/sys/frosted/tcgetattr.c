@@ -3,7 +3,7 @@
 */
 
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <sys/termios.h>
 #include <errno.h>
 extern int sys_tcgetattr(int fd, struct termios *termios_p);

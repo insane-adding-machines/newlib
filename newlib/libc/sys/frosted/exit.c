@@ -2,7 +2,7 @@
  * Frosted version of exit.
  */
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <errno.h>
 #include <stdio.h>
 

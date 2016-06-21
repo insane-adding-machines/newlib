@@ -2,7 +2,7 @@
  * Frosted version of fcntl.
  */
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <errno.h>
 extern int sys_fcntl(int fd, int cmd, unsigned int arg);
 

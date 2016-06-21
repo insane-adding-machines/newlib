@@ -4,7 +4,7 @@
 */
 
 #ifndef UNIT_TEST
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #endif
 #include "pwd.h"
 #include "sys/types.h"

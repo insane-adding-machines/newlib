@@ -1,7 +1,7 @@
 /*
  * Frosted version of readlink.
  */
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <stdlib.h>
 #include <errno.h>
 

@@ -3,7 +3,7 @@
 */
 
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <sys/socket.h>
 #include <errno.h>
 extern int sys_setsockopt(int sd, int level, int optname, const void *optval, unsigned int optlen);

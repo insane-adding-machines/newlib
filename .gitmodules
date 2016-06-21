@@ -1,0 +1,3 @@
+[submodule "newlib/libc/sys/frosted/frosted-headers"]
+	path = newlib/libc/sys/frosted/frosted-headers
+	url = https://github.com/insane-adding-machines/frosted-headers.git

@@ -3,7 +3,7 @@
  */
 
 #ifndef UNIT_TEST
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #endif
 #include <sys/types.h>
 #include <unistd.h>

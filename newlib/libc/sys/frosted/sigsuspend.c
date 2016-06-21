@@ -3,7 +3,7 @@
 */
 
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <signal.h>
 #include <errno.h>
 extern int sys_sigsuspend(const sigset_t mask);

@@ -2,7 +2,7 @@
  * Frosted version of unlink.
  */
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <errno.h>
 extern int sys_unlink(const char *name);
 

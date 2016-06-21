@@ -2,7 +2,7 @@
  * Frosted version of getaddrinfo.
  */
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <errno.h>
 #include <sys/types.h>
 #include <sys/socket.h>

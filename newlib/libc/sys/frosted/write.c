@@ -2,7 +2,7 @@
  * Frosted version of write.
  */
 
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include <errno.h>
 extern int sys_write(int file, const void *ptr, int len);
 

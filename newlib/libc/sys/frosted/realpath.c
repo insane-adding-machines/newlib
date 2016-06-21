@@ -1,4 +1,4 @@
-#include "syscall_table.h"
+#include "sys/frosted.h"
 #include "syscalls.h"
 #include "sys/syslimits.h"
 #include "sys/stat.h"
