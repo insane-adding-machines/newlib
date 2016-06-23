@@ -16,7 +16,7 @@ lib_a_SOURCES = \
 	inet.c ioctl.c \
 	isatty.c kill.c link.c listen.c  lseek.c malloc.c malloc_trim.c mkdir.c \
 	mount.c mutex.c mutex_init.c open.c opendir.c pipe.c \
-	poll.c printf.c pwd.c read.c readdir.c recvfrom.c resource.c select.c semaphore.c \
+	poll.c printf.c ptrace.c pwd.c read.c readdir.c recvfrom.c resource.c select.c semaphore.c \
 	sem_init.c sendto.c setsid.c setsockopt.c shutdown.c sigaction.c signal.c sigprocmask.c \
 	sigsuspend.c sleep.c socket.c stat.c svc.s syscall.c syscalls.c tcgetattr.c \
 	tcsendbreak.c tcsetattr.c ttyname.c uid.c umask.c \

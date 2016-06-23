@@ -90,26 +90,26 @@ am_lib_a_OBJECTS = lib_a-accept.$(OBJEXT) lib_a-bind.$(OBJEXT) \
 	lib_a-mutex_init.$(OBJEXT) lib_a-open.$(OBJEXT) \
 	lib_a-opendir.$(OBJEXT) lib_a-pipe.$(OBJEXT) \
 	lib_a-poll.$(OBJEXT) lib_a-printf.$(OBJEXT) \
-	lib_a-pwd.$(OBJEXT) lib_a-read.$(OBJEXT) \
-	lib_a-readdir.$(OBJEXT) lib_a-recvfrom.$(OBJEXT) \
-	lib_a-resource.$(OBJEXT) lib_a-select.$(OBJEXT) \
-	lib_a-semaphore.$(OBJEXT) lib_a-sem_init.$(OBJEXT) \
-	lib_a-sendto.$(OBJEXT) lib_a-setsid.$(OBJEXT) \
-	lib_a-setsockopt.$(OBJEXT) lib_a-shutdown.$(OBJEXT) \
-	lib_a-sigaction.$(OBJEXT) lib_a-signal.$(OBJEXT) \
-	lib_a-sigprocmask.$(OBJEXT) lib_a-sigsuspend.$(OBJEXT) \
-	lib_a-sleep.$(OBJEXT) lib_a-socket.$(OBJEXT) \
-	lib_a-stat.$(OBJEXT) lib_a-svc.$(OBJEXT) \
-	lib_a-syscall.$(OBJEXT) lib_a-syscalls.$(OBJEXT) \
-	lib_a-tcgetattr.$(OBJEXT) lib_a-tcsendbreak.$(OBJEXT) \
-	lib_a-tcsetattr.$(OBJEXT) lib_a-ttyname.$(OBJEXT) \
-	lib_a-uid.$(OBJEXT) lib_a-umask.$(OBJEXT) \
-	lib_a-umount.$(OBJEXT) lib_a-unlink.$(OBJEXT) \
-	lib_a-uname.$(OBJEXT) lib_a-vfork.$(OBJEXT) \
-	lib_a-wait.$(OBJEXT) lib_a-waitpid.$(OBJEXT) \
-	lib_a-write.$(OBJEXT) lib_a-stubs.$(OBJEXT) \
-	lib_a-readlink.$(OBJEXT) lib_a-realpath.$(OBJEXT) \
-	lib_a-frosted_syscalls.$(OBJEXT)
+	lib_a-ptrace.$(OBJEXT) lib_a-pwd.$(OBJEXT) \
+	lib_a-read.$(OBJEXT) lib_a-readdir.$(OBJEXT) \
+	lib_a-recvfrom.$(OBJEXT) lib_a-resource.$(OBJEXT) \
+	lib_a-select.$(OBJEXT) lib_a-semaphore.$(OBJEXT) \
+	lib_a-sem_init.$(OBJEXT) lib_a-sendto.$(OBJEXT) \
+	lib_a-setsid.$(OBJEXT) lib_a-setsockopt.$(OBJEXT) \
+	lib_a-shutdown.$(OBJEXT) lib_a-sigaction.$(OBJEXT) \
+	lib_a-signal.$(OBJEXT) lib_a-sigprocmask.$(OBJEXT) \
+	lib_a-sigsuspend.$(OBJEXT) lib_a-sleep.$(OBJEXT) \
+	lib_a-socket.$(OBJEXT) lib_a-stat.$(OBJEXT) \
+	lib_a-svc.$(OBJEXT) lib_a-syscall.$(OBJEXT) \
+	lib_a-syscalls.$(OBJEXT) lib_a-tcgetattr.$(OBJEXT) \
+	lib_a-tcsendbreak.$(OBJEXT) lib_a-tcsetattr.$(OBJEXT) \
+	lib_a-ttyname.$(OBJEXT) lib_a-uid.$(OBJEXT) \
+	lib_a-umask.$(OBJEXT) lib_a-umount.$(OBJEXT) \
+	lib_a-unlink.$(OBJEXT) lib_a-uname.$(OBJEXT) \
+	lib_a-vfork.$(OBJEXT) lib_a-wait.$(OBJEXT) \
+	lib_a-waitpid.$(OBJEXT) lib_a-write.$(OBJEXT) \
+	lib_a-stubs.$(OBJEXT) lib_a-readlink.$(OBJEXT) \
+	lib_a-realpath.$(OBJEXT) lib_a-frosted_syscalls.$(OBJEXT)
 lib_a_OBJECTS = $(am_lib_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp =
@@ -233,7 +233,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = cygnus
-INCLUDES = $(NEWLIB_CFLAGS) $(CROSS_CFLAGS) $(TARGET_CFLAGS)
+INCLUDES = $(NEWLIB_CFLAGS) $(CROSS_CFLAGS) $(TARGET_CFLAGS) -Ifrosted-headers/include
 AM_CCASFLAGS = $(INCLUDES)
 noinst_LIBRARIES = lib.a
 
@@ -245,7 +245,7 @@ lib_a_SOURCES = \
 	inet.c ioctl.c \
 	isatty.c kill.c link.c listen.c  lseek.c malloc.c malloc_trim.c mkdir.c \
 	mount.c mutex.c mutex_init.c open.c opendir.c pipe.c \
-	poll.c printf.c pwd.c read.c readdir.c recvfrom.c resource.c select.c semaphore.c \
+	poll.c printf.c ptrace.c pwd.c read.c readdir.c recvfrom.c resource.c select.c semaphore.c \
 	sem_init.c sendto.c setsid.c setsockopt.c shutdown.c sigaction.c signal.c sigprocmask.c \
 	sigsuspend.c sleep.c socket.c stat.c svc.s syscall.c syscalls.c tcgetattr.c \
 	tcsendbreak.c tcsetattr.c ttyname.c uid.c umask.c \
@@ -577,6 +577,12 @@ lib_a-printf.o: printf.c
 
 lib_a-printf.obj: printf.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-printf.obj `if test -f 'printf.c'; then $(CYGPATH_W) 'printf.c'; else $(CYGPATH_W) '$(srcdir)/printf.c'; fi`
+
+lib_a-ptrace.o: ptrace.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-ptrace.o `test -f 'ptrace.c' || echo '$(srcdir)/'`ptrace.c
+
+lib_a-ptrace.obj: ptrace.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-ptrace.obj `if test -f 'ptrace.c'; then $(CYGPATH_W) 'ptrace.c'; else $(CYGPATH_W) '$(srcdir)/ptrace.c'; fi`
 
 lib_a-pwd.o: pwd.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-pwd.o `test -f 'pwd.c' || echo '$(srcdir)/'`pwd.c
