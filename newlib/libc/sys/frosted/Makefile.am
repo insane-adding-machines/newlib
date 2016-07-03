@@ -12,12 +12,12 @@ noinst_LIBRARIES = lib.a
 lib_a_SOURCES = \
 	accept.c bind.c chdir.c close.c closedir.c connect.c dirname.c\
 	dup2.c dup.c errno.c exec.c exit.c fgets.c free.c fcntl.c getaddrinfo.c getcwd.c \
-	gethostname.c getlogin.c getpeername.c getpid.c getppid.c getsockname.c getsockopt.c gettimeofday.c grp.c \
-	inet.c ioctl.c \
+	gethostname.c getlogin.c getpeername.c getpid.c getppid.c getpriority.c getsockname.c \
+   	getsockopt.c gettimeofday.c grp.c inet.c ioctl.c \
 	isatty.c kill.c link.c listen.c  lseek.c malloc.c malloc_trim.c mkdir.c \
 	mount.c mutex.c mutex_init.c open.c opendir.c pipe.c \
-	poll.c printf.c ptrace.c pwd.c read.c readdir.c recvfrom.c resource.c select.c semaphore.c \
-	sem_init.c sendto.c setsid.c setsockopt.c shutdown.c sigaction.c signal.c sigprocmask.c \
+	poll.c printf.c ptrace.c pwd.c read.c readdir.c reboot.c recvfrom.c resource.c select.c semaphore.c \
+	sem_init.c sendto.c setpriority.c setsid.c setsockopt.c shutdown.c sigaction.c signal.c sigprocmask.c \
 	sigsuspend.c sleep.c socket.c stat.c svc.s syscall.c syscalls.c tcgetattr.c \
 	tcsendbreak.c tcsetattr.c ttyname.c uid.c umask.c \
 	umount.c unlink.c uname.c vfork.c wait.c waitpid.c write.c stubs.c readlink.c realpath.c \

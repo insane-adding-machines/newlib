@@ -81,6 +81,7 @@ int getrusage (int __who, struct rusage *__rusage);
 
 int getpriority (int which, id_t who);
 int setpriority (int which, id_t who, int value);
+int nice(int inc);
 
 #ifdef __cplusplus
 }

@@ -38,6 +38,11 @@ extern "C" {
 #define RLIM_SAVED_MAX	RLIM_INFINITY
 #define RLIM_SAVED_CUR	RLIM_INFINITY
 
+#define	PRIO_MIN	(-20)
+#define	PRIO_MAX	20
+#define PRIO_RT PRIO_MIN
+
+
 /* Generic ID type, must match at least pid_t, uid_t and gid_t in size. */
 #ifndef __id_t_defined
 #define __id_t_defined

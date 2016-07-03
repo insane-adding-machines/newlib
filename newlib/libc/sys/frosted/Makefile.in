@@ -79,9 +79,10 @@ am_lib_a_OBJECTS = lib_a-accept.$(OBJEXT) lib_a-bind.$(OBJEXT) \
 	lib_a-getaddrinfo.$(OBJEXT) lib_a-getcwd.$(OBJEXT) \
 	lib_a-gethostname.$(OBJEXT) lib_a-getlogin.$(OBJEXT) \
 	lib_a-getpeername.$(OBJEXT) lib_a-getpid.$(OBJEXT) \
-	lib_a-getppid.$(OBJEXT) lib_a-getsockname.$(OBJEXT) \
-	lib_a-getsockopt.$(OBJEXT) lib_a-gettimeofday.$(OBJEXT) \
-	lib_a-grp.$(OBJEXT) lib_a-inet.$(OBJEXT) lib_a-ioctl.$(OBJEXT) \
+	lib_a-getppid.$(OBJEXT) lib_a-getpriority.$(OBJEXT) \
+	lib_a-getsockname.$(OBJEXT) lib_a-getsockopt.$(OBJEXT) \
+	lib_a-gettimeofday.$(OBJEXT) lib_a-grp.$(OBJEXT) \
+	lib_a-inet.$(OBJEXT) lib_a-ioctl.$(OBJEXT) \
 	lib_a-isatty.$(OBJEXT) lib_a-kill.$(OBJEXT) \
 	lib_a-link.$(OBJEXT) lib_a-listen.$(OBJEXT) \
 	lib_a-lseek.$(OBJEXT) lib_a-malloc.$(OBJEXT) \
@@ -92,9 +93,10 @@ am_lib_a_OBJECTS = lib_a-accept.$(OBJEXT) lib_a-bind.$(OBJEXT) \
 	lib_a-poll.$(OBJEXT) lib_a-printf.$(OBJEXT) \
 	lib_a-ptrace.$(OBJEXT) lib_a-pwd.$(OBJEXT) \
 	lib_a-read.$(OBJEXT) lib_a-readdir.$(OBJEXT) \
-	lib_a-recvfrom.$(OBJEXT) lib_a-resource.$(OBJEXT) \
-	lib_a-select.$(OBJEXT) lib_a-semaphore.$(OBJEXT) \
-	lib_a-sem_init.$(OBJEXT) lib_a-sendto.$(OBJEXT) \
+	lib_a-reboot.$(OBJEXT) lib_a-recvfrom.$(OBJEXT) \
+	lib_a-resource.$(OBJEXT) lib_a-select.$(OBJEXT) \
+	lib_a-semaphore.$(OBJEXT) lib_a-sem_init.$(OBJEXT) \
+	lib_a-sendto.$(OBJEXT) lib_a-setpriority.$(OBJEXT) \
 	lib_a-setsid.$(OBJEXT) lib_a-setsockopt.$(OBJEXT) \
 	lib_a-shutdown.$(OBJEXT) lib_a-sigaction.$(OBJEXT) \
 	lib_a-signal.$(OBJEXT) lib_a-sigprocmask.$(OBJEXT) \
@@ -241,12 +243,12 @@ noinst_LIBRARIES = lib.a
 lib_a_SOURCES = \
 	accept.c bind.c chdir.c close.c closedir.c connect.c dirname.c\
 	dup2.c dup.c errno.c exec.c exit.c fgets.c free.c fcntl.c getaddrinfo.c getcwd.c \
-	gethostname.c getlogin.c getpeername.c getpid.c getppid.c getsockname.c getsockopt.c gettimeofday.c grp.c \
-	inet.c ioctl.c \
+	gethostname.c getlogin.c getpeername.c getpid.c getppid.c getpriority.c getsockname.c \
+   	getsockopt.c gettimeofday.c grp.c inet.c ioctl.c \
 	isatty.c kill.c link.c listen.c  lseek.c malloc.c malloc_trim.c mkdir.c \
 	mount.c mutex.c mutex_init.c open.c opendir.c pipe.c \
-	poll.c printf.c ptrace.c pwd.c read.c readdir.c recvfrom.c resource.c select.c semaphore.c \
-	sem_init.c sendto.c setsid.c setsockopt.c shutdown.c sigaction.c signal.c sigprocmask.c \
+	poll.c printf.c ptrace.c pwd.c read.c readdir.c reboot.c recvfrom.c resource.c select.c semaphore.c \
+	sem_init.c sendto.c setpriority.c setsid.c setsockopt.c shutdown.c sigaction.c signal.c sigprocmask.c \
 	sigsuspend.c sleep.c socket.c stat.c svc.s syscall.c syscalls.c tcgetattr.c \
 	tcsendbreak.c tcsetattr.c ttyname.c uid.c umask.c \
 	umount.c unlink.c uname.c vfork.c wait.c waitpid.c write.c stubs.c readlink.c realpath.c \
@@ -446,6 +448,12 @@ lib_a-getppid.o: getppid.c
 lib_a-getppid.obj: getppid.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-getppid.obj `if test -f 'getppid.c'; then $(CYGPATH_W) 'getppid.c'; else $(CYGPATH_W) '$(srcdir)/getppid.c'; fi`
 
+lib_a-getpriority.o: getpriority.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-getpriority.o `test -f 'getpriority.c' || echo '$(srcdir)/'`getpriority.c
+
+lib_a-getpriority.obj: getpriority.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-getpriority.obj `if test -f 'getpriority.c'; then $(CYGPATH_W) 'getpriority.c'; else $(CYGPATH_W) '$(srcdir)/getpriority.c'; fi`
+
 lib_a-getsockname.o: getsockname.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-getsockname.o `test -f 'getsockname.c' || echo '$(srcdir)/'`getsockname.c
 
@@ -602,6 +610,12 @@ lib_a-readdir.o: readdir.c
 lib_a-readdir.obj: readdir.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-readdir.obj `if test -f 'readdir.c'; then $(CYGPATH_W) 'readdir.c'; else $(CYGPATH_W) '$(srcdir)/readdir.c'; fi`
 
+lib_a-reboot.o: reboot.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-reboot.o `test -f 'reboot.c' || echo '$(srcdir)/'`reboot.c
+
+lib_a-reboot.obj: reboot.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-reboot.obj `if test -f 'reboot.c'; then $(CYGPATH_W) 'reboot.c'; else $(CYGPATH_W) '$(srcdir)/reboot.c'; fi`
+
 lib_a-recvfrom.o: recvfrom.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-recvfrom.o `test -f 'recvfrom.c' || echo '$(srcdir)/'`recvfrom.c
 
@@ -637,6 +651,12 @@ lib_a-sendto.o: sendto.c
 
 lib_a-sendto.obj: sendto.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-sendto.obj `if test -f 'sendto.c'; then $(CYGPATH_W) 'sendto.c'; else $(CYGPATH_W) '$(srcdir)/sendto.c'; fi`
+
+lib_a-setpriority.o: setpriority.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-setpriority.o `test -f 'setpriority.c' || echo '$(srcdir)/'`setpriority.c
+
+lib_a-setpriority.obj: setpriority.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-setpriority.obj `if test -f 'setpriority.c'; then $(CYGPATH_W) 'setpriority.c'; else $(CYGPATH_W) '$(srcdir)/setpriority.c'; fi`
 
 lib_a-setsid.o: setsid.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-setsid.o `test -f 'setsid.c' || echo '$(srcdir)/'`setsid.c
