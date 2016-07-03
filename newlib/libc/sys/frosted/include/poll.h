@@ -20,6 +20,7 @@ struct pollfd {
 
 /* for select */
 typedef unsigned int nfds_t;
+int poll(struct pollfd *fds, int nfds, int timeout);
 
 #endif /* _FROSTED_POLL_H */
 

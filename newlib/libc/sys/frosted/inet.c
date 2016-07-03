@@ -66,6 +66,14 @@ int inet_aton(const char *ipstr, struct in_addr *ia)
     return 0;
 }
 
+int inet_pton(int af, const char *src, void *dst)
+{
+    if (af != AF_INET)
+        return 0;
+    return (1 + inet_aton(src, dst));
+
+}
+
 static char inet_ntoa_result[20] = "";
 
 char *inet_ntoa(struct in_addr in)

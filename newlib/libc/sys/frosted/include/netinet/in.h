@@ -269,7 +269,7 @@ extern const struct in6_addr in6addr_loopback;   /* ::1 */
 
 struct sockaddr {
 	sa_family_t sa_family;
-	uint8_t sa_padding[14]
+	uint8_t sa_data[14]
 };
 
 /* Structure describing an Internet socket address.  */

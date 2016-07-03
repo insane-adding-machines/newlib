@@ -108,6 +108,20 @@ struct termios {
 	speed_t		c_ospeed;
 };
 
+int tcgetattr(int fd, struct termios *termios_p);
+int tcsetattr(int fd, int optional_actions, const struct termios *termios_p);
+int tcsendbreak(int fd, int duration);
+int tcdrain(int fd);
+int tcflush(int fd, int queue_selector);
+int tcflow(int fd, int action);
+void cfmakeraw(struct termios *termios_p);
+speed_t cfgetispeed(const struct termios *termios_p);
+speed_t cfgetospeed(const struct termios *termios_p);
+int cfsetispeed(struct termios *termios_p, speed_t speed);
+int cfsetospeed(struct termios *termios_p, speed_t speed);
+int cfsetspeed(struct termios *termios_p, speed_t speed);
+
+
 # ifndef _NO_MACROS
 
 #  define cfgetospeed(tp)	((tp)->c_ospeed)
