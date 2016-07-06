@@ -49,7 +49,7 @@
 #ifndef OPEN_MAX
 #define	OPEN_MAX		   64	/* max open files per process */
 #endif
-#define	PATH_MAX		 1024	/* max bytes in pathname */
+#define	PATH_MAX		  512	/* max bytes in pathname */
 #define	PIPE_BUF		  512	/* max bytes for atomic pipe writes */
 #define	IOV_MAX			 1024	/* max elements in i/o vector */
 
