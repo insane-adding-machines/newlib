@@ -16,7 +16,7 @@ CT_TARGET_ALIAS="arm-frosted"
 export CT_TARGET_ALIAS
 
 #--enable-newlib-nano-formatted-io
-../configure --prefix=`pwd`/lib --target=arm-frosted-eabi --with-mode=thumb --with-cpu=cortex=m3 --disable-multilib --disable-newlib-supplied-syscalls
+../configure --prefix=`pwd`/lib --target=arm-frosted-eabi --with-mode=thumb --with-cpu=cortex=m3 --disable-multilib --disable-newlib-supplied-syscalls --enable-newlib-fvwrite-in-streamio=no --enable-newlib-fseek-optimization=no --enable-newlib_wide_orient=no --enable-newlib-unbuf-stream-opt=yes
 if [ $? -ne 0 ]; then
     echo Failed to configure newlib
     exit 1
