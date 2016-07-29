@@ -19,7 +19,7 @@ lib_a_SOURCES = \
 	poll.c printf.c ptrace.c pwd.c read.c readdir.c reboot.c recvfrom.c resource.c select.c semaphore.c \
 	sem_init.c sendto.c setpriority.c setsid.c setsockopt.c shutdown.c sigaction.c signal.c sigprocmask.c \
 	sigsuspend.c sleep.c socket.c stat.c svc.s syscall.c syscalls.c tcgetattr.c \
-	tcsendbreak.c tcsetattr.c ttyname.c uid.c umask.c \
+	tcsendbreak.c tcsetattr.c truncate.c ttyname.c uid.c umask.c \
 	umount.c unlink.c uname.c vfork.c wait.c waitpid.c write.c stubs.c readlink.c realpath.c \
 	frosted-headers/sys/frosted_syscalls.c 
 
