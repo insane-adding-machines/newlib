@@ -501,6 +501,12 @@ int	_EXFUN(fpurge, (FILE *));
 ssize_t _EXFUN(__getdelim, (char **, size_t *, int, FILE *));
 ssize_t _EXFUN(__getline, (char **, size_t *, FILE *));
 
+#if !defined(getline)
+#  define getline __getline
+#  define getdelim __getdelim
+#endif
+
+
 #if __BSD_VISIBLE
 void	_EXFUN(clearerr_unlocked, (FILE *));
 int	_EXFUN(feof_unlocked, (FILE *));
