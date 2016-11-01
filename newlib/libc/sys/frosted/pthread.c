@@ -30,7 +30,7 @@ int pthread_join(pthread_t thread, void **retval)
     return sys_pthread_join(thread, retval);
 }
 
-int pthread_cancel(pthread_t thread);
+int pthread_cancel(pthread_t thread)
 {
     return sys_pthread_cancel(thread);
 }
