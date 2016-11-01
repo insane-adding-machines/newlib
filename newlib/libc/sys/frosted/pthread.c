@@ -6,7 +6,7 @@ extern int sys_pthread_create(pthread_t *thread, const pthread_attr_t *attr, voi
 extern void sys_pthread_exit(void *retval);
 extern int sys_pthread_detach(pthread_t thread);
 extern int sys_pthread_join(pthread_t thread, void **retval);
-extern int sys_pthread_kill(pthread_t thread, int sig);
+extern int sys_pthread_cancel(pthread_t thread);
 extern pthread_t sys_pthread_self(void);
 
 int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine) (void *), void *arg)
@@ -20,7 +20,7 @@ void pthread_exit(void *retval)
     sys_pthread_exit(retval);
 }
 
-int pthread_detach(pthread_t thread) 
+int pthread_detach(pthread_t thread)
 {
     return sys_pthread_detach(thread);
 }
@@ -30,9 +30,9 @@ int pthread_join(pthread_t thread, void **retval)
     return sys_pthread_join(thread, retval);
 }
 
-int pthread_kill(pthread_t thread, int sig)
+int pthread_cancel(pthread_t thread);
 {
-    return sys_pthread_kill(thread, sig);
+    return sys_pthread_cancel(thread);
 }
 
 pthread_t pthread_self(void)
