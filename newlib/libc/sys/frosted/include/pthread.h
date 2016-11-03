@@ -10,13 +10,15 @@ int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_
 void pthread_exit(void *retval);
 int pthread_detach(pthread_t thread);
 int pthread_join(pthread_t thread, void **retval);
-int pthread_kill(pthread_t thread, int sig);
+int pthread_cancel(pthread_t thread);
+int pthread_setcancelstate(int state, int *oldstate);
 pthread_t pthread_self(void);
 
 /* Pure libC functions */
 int pthread_attr_setdetachstate(pthread_attr_t *attr, int detachstate);
 int pthread_attr_getdetachstate(const pthread_attr_t *attr, int *detachstate);
 int pthread_equal(pthread_t t1, pthread_t t2);
+int pthread_setcanceltype(int type, int *oldtype);
 
 
 
