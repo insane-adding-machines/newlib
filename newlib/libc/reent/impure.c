@@ -1,5 +1,8 @@
 #include <reent.h>
 
+#ifndef REENT_H
+#define REENT_H
+
 /* Note that there is a copy of this in sys/reent.h.  */
 #ifndef __ATTRIBUTE_IMPURE_PTR__
 #define __ATTRIBUTE_IMPURE_PTR__
@@ -20,9 +23,7 @@ extern const struct __sFILE_fake __sf_fake_stdout _ATTRIBUTE ((weak));
 extern const struct __sFILE_fake __sf_fake_stderr _ATTRIBUTE ((weak));
 #endif
 
-static struct _reent __ATTRIBUTE_IMPURE_DATA__ impure_data = _REENT_INIT (impure_data);
-#ifdef __CYGWIN__
-extern struct _reent reent_data __attribute__ ((alias("impure_data")));
+struct _reent __ATTRIBUTE_IMPURE_DATA__ impure_data;
+struct _reent *__ATTRIBUTE_IMPURE_PTR__ _impure_ptr;
+struct _reent *_CONST __ATTRIBUTE_IMPURE_PTR__ _global_impure_ptr;
 #endif
-struct _reent *__ATTRIBUTE_IMPURE_PTR__ _impure_ptr = &impure_data;
-struct _reent *_CONST __ATTRIBUTE_IMPURE_PTR__ _global_impure_ptr = &impure_data;
