@@ -15,6 +15,8 @@ int pthread_setcancelstate(int state, int *oldstate);
 pthread_t pthread_self(void);
 
 /* Pure libC functions */
+int pthread_attr_init(pthread_attr_t *attr);
+int pthread_attr_destroy(pthread_attr_t *attr);
 int pthread_attr_setdetachstate(pthread_attr_t *attr, int detachstate);
 int pthread_attr_getdetachstate(const pthread_attr_t *attr, int *detachstate);
 int pthread_equal(pthread_t t1, pthread_t t2);
