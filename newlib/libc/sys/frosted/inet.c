@@ -78,8 +78,8 @@ static char inet_ntoa_result[20] = "";
 
 char *inet_ntoa(struct in_addr in)
 {
-    const unsigned char *addr = (const unsigned char *) &in.s_addr;
-    char *ipbuf = (char *) inet_ntoa_result;
+    uint8_t *addr = (uint8_t *)(&in.s_addr);
+    char *ipbuf = inet_ntoa_result;
     int i;
     memset(ipbuf, 0, 20);
 
@@ -110,8 +110,8 @@ const char *inet_ntop(int af, const void *src, char *dst, socklen_t size)
 {
 
     if (af == AF_INET) {
-        struct sockaddr_in *addr = (struct sockaddr_in *)src;
-        char *res = inet_ntoa(addr->sin_addr);
+        struct in_addr *addr = (struct in_addr *)src;
+        char *res = inet_ntoa(*addr);
         if (!res) {
             return NULL;
         }
