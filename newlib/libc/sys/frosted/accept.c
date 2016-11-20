@@ -21,8 +21,10 @@ int accept(int sd, struct sockaddr *sa, socklen_t *socklen)
             errno = EPROTONOSUPPORT;
             return -1;
         }
-        memcpy(sa, se.se_addr, se.se_len); 
-        *socklen = se.se_len;
+        if (se.se_addr) {
+            memcpy(sa, se.se_addr, se.se_len);
+            *socklen = se.se_len;
+        }
     }
     if (ret < 0) {
         errno = 0 - ret;
