@@ -1,5 +1,6 @@
 #include "sys/frosted.h"
 #include <pthread.h>
+#include <sched.h>
 #include <errno.h>
 
 extern int sys_pthread_create(pthread_t *thread, const pthread_attr_t *attr,
@@ -83,4 +84,9 @@ int pthread_setcanceltype(int type, int *oldtype)
     if (oldtype)
         *oldtype = type;
     return 0;
+}
+
+int pthread_yield(void)
+{
+    return sched_yield();
 }
