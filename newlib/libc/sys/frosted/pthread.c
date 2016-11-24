@@ -62,7 +62,7 @@ int pthread_yield(void)
 int pthread_mutex_init(pthread_mutex_t *mutex,
                        const pthread_mutexattr_t *restrict attr)
 {
-    return sys_pthread_mutex_init(*mutex, attr);
+    return sys_pthread_mutex_init(mutex, attr);
 }
 
 int pthread_mutex_destroy(pthread_mutex_t *mutex)
@@ -72,12 +72,12 @@ int pthread_mutex_destroy(pthread_mutex_t *mutex)
 
 int pthread_mutex_lock(pthread_mutex_t *mutex)
 {
-    return sys_pthread_mutex_lock(*mutex);
+    return sys_pthread_mutex_lock(mutex);
 }
 
 int pthread_mutex_trylock(pthread_mutex_t *mutex)
 {
-    return sys_pthread_mutex_trylock(*mutex);
+    return sys_pthread_mutex_trylock(mutex);
 }
 
 int pthread_mutex_unlock(pthread_mutex_t *mutex)
