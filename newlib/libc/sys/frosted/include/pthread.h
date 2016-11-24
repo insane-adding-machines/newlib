@@ -14,6 +14,12 @@ int pthread_join(pthread_t thread, void **retval);
 int pthread_cancel(pthread_t thread);
 int pthread_setcancelstate(int state, int *oldstate);
 pthread_t pthread_self(void);
+int pthread_mutex_init(pthread_mutex_t *restrict mutex,
+                       const pthread_mutexattr_t *restrict attr);
+int pthread_mutex_destroy(pthread_mutex_t *mutex);
+int pthread_mutex_lock(pthread_mutex_t *mutex);
+int pthread_mutex_trylock(pthread_mutex_t *mutex);
+int pthread_mutex_unlock(pthread_mutex_t *mutex);
 
 /* Pure libC functions */
 int pthread_attr_init(pthread_attr_t *attr);
@@ -23,5 +29,4 @@ int pthread_attr_getdetachstate(const pthread_attr_t *attr, int *detachstate);
 int pthread_equal(pthread_t t1, pthread_t t2);
 int pthread_setcanceltype(int type, int *oldtype);
 int pthread_yield(void);
-
 #endif /* _FROSTED_POLL_H */

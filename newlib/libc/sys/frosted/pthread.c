@@ -11,6 +11,12 @@ extern int sys_pthread_join(pthread_t thread, void **retval);
 extern int sys_pthread_cancel(pthread_t thread);
 extern pthread_t sys_pthread_self(void);
 extern int sys_pthread_setcancelstate(int state, int *oldstate);
+extern int sys_pthread_mutex_init(pthread_mutex_t *mutex,
+                                  const pthread_mutexattr_t *restrict attr);
+extern int sys_pthread_mutex_destroy(pthread_mutex_t *mutex);
+extern int sys_pthread_mutex_lock(pthread_mutex_t *mutex);
+extern int sys_pthread_mutex_trylock(pthread_mutex_t *mutex);
+extern int sys_pthread_mutex_unlock(pthread_mutex_t *mutex);
 
 int pthread_create(pthread_t *thread, const pthread_attr_t *attr,
                    void *(*start_routine)(void *), void *arg)
@@ -46,6 +52,37 @@ pthread_t pthread_self(void)
 int pthread_setcancelstate(int state, int *oldstate)
 {
     return sys_pthread_setcancelstate(state, oldstate);
+}
+
+int pthread_yield(void)
+{
+    return sched_yield();
+}
+
+int pthread_mutex_init(pthread_mutex_t *mutex,
+                       const pthread_mutexattr_t *restrict attr)
+{
+    return sys_pthread_mutex_init(*mutex, attr);
+}
+
+int pthread_mutex_destroy(pthread_mutex_t *mutex)
+{
+    return sys_pthread_mutex_destroy(*mutex);
+}
+
+int pthread_mutex_lock(pthread_mutex_t *mutex)
+{
+    return sys_pthread_mutex_lock(*mutex);
+}
+
+int pthread_mutex_trylock(pthread_mutex_t *mutex)
+{
+    return sys_pthread_mutex_trylock(*mutex);
+}
+
+int pthread_mutex_unlock(pthread_mutex_t *mutex)
+{
+    return sys_pthread_mutex_unlock(*mutex);
 }
 
 /* Pure libC functions */
@@ -84,9 +121,4 @@ int pthread_setcanceltype(int type, int *oldtype)
     if (oldtype)
         *oldtype = type;
     return 0;
-}
-
-int pthread_yield(void)
-{
-    return sched_yield();
 }
