@@ -2,17 +2,11 @@
  * Frosted version of ptrace.
  */
 
+#include "sys/ptrace.h"
 #include <errno.h>
-#include <sys/ptrace.h>
+extern int sys_ptrace(int, int, void *, void *);
 
-int ptrace(enum __ptrace_request request, pid_t pid, void *data, void *addr)
+int ptrace( enum __ptrace_request request, pid_t pid, void *addr, void *data)
 {
-    int ret = sys_ptrace(request, pid, data, addr);
-    if (ret < 0) { 
-        errno = 0 - ret;
-        return -1;
-    }
-    return ret;
-
+    return sys_ptrace(request, pid, addr, data);
 }
-

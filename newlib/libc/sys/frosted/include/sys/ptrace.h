@@ -21,7 +21,6 @@ enum __ptrace_request
     PTRACE_GETREGS = 12,
     PTRACE_SETREGS = 13,
 
-    /* Not implemented yet */
     PTRACE_GETFPREGS = 14,
     PTRACE_SETFPREGS = 15,
     PTRACE_ATTACH = 16,
