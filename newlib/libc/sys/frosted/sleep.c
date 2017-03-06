@@ -37,7 +37,7 @@ int usleep(int us)
 int nanosleep(const struct timespec *req, struct timespec *rem)
 {
     uint32_t r;
-    int ret = sys_sleep((req->tv_nsec / (1000 * 1000)) + req->tv_sec / 1000 + 1, &r);
+    int ret = sys_sleep((req->tv_nsec / (1000 * 1000)) + req->tv_sec * 1000 + 1, &r);
     if (rem) {
         rem->tv_sec = 0;
         rem->tv_nsec = 0;
