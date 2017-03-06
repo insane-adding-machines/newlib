@@ -6,14 +6,15 @@
 #include <errno.h>
 #include <semaphore.h>
 
-extern sem_t *sys_sem_init(int val);
+extern int sys_sem_init(sem_t *s, int val);
 
-sem_t *sem_init(int val)
+int sem_init(sem_t *s, int pshared, int val)
 {
-    sem_t *s = sys_sem_init(val);
-    if (!s) {
-        errno = ENOMEM;
+    int ret = sys_sem_init(s, val);
+    if (ret < 0) {
+    	errno = 0 - ret;
+        ret = -1;
     }
-    return s;
+    return ret;
 }
 
