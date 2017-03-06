@@ -155,16 +155,6 @@ int mknod(const char *pathname, mode_t mode, dev_t dev)
 }
 
 /*
- * Frosted version of nanosleep (STUB).
- */
-
-int nanosleep(const struct timespec *req, struct timespec *rem)
-{
-    errno = ENOSYS;
-    return -1;
-}
-
-/*
  * Frosted version of regcomp (STUB).
  */
 #include <regex.h>
