@@ -7,6 +7,7 @@
 #include <semaphore.h>
 extern int sys_sem_post(sem_t *s);
 extern int sys_sem_wait(sem_t *s);
+extern int sys_sem_trywait(sem_t *s);
 extern int sys_sem_destroy(sem_t *s);
 
 int sem_post(sem_t *s)
@@ -22,6 +23,16 @@ int sem_post(sem_t *s)
 int sem_wait(sem_t *s)
 {
     int ret = sys_sem_wait(s);
+    if (ret < 0) {
+        errno = 0 - ret;
+        ret = -1;
+    }
+    return ret;
+}
+
+int sem_trywait(sem_t *s)
+{
+    int ret = sys_sem_trywait(s);
     if (ret < 0) {
         errno = 0 - ret;
         ret = -1;
