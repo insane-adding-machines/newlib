@@ -29,4 +29,5 @@ int pthread_attr_getdetachstate(const pthread_attr_t *attr, int *detachstate);
 int pthread_equal(pthread_t t1, pthread_t t2);
 int pthread_setcanceltype(int type, int *oldtype);
 int pthread_yield(void);
+int pthread_kill(pthread_t thread, int sig);
 #endif /* _FROSTED_POLL_H */

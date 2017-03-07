@@ -122,3 +122,8 @@ int pthread_setcanceltype(int type, int *oldtype)
         *oldtype = type;
     return 0;
 }
+
+int pthread_kill(pthread_t thread, int sig)
+{
+    return sys_pthread_kill(thread, sig);
+}
