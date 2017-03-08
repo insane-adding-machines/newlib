@@ -56,3 +56,46 @@ int nanosleep(const struct timespec *req, struct timespec *rem)
     }
     return ret;
 }
+
+extern int sys_gettimeofday(struct timeval *tv);
+
+int clock_getres(clockid_t clock_id, struct timespec *res)
+{
+    int ret = -1;
+    if (res) {
+        res->tv_sec = 0;
+        res->tv_nsec = 1 * 1000 * 1000;
+        ret = 0;
+    }
+    return ret;
+}
+
+int clock_gettime(clockid_t clock_id, struct timespec *tp)
+{
+    struct timeval tv;
+    int ret = sys_gettimeofday(&tv);
+    if (ret < 0) {
+        errno = 0 - ret;
+        ret = -1;
+    }
+    tp->tv_sec = tv.tv_sec;
+    tp->tv_nsec = tv.tv_usec * 1000;
+    return ret;
+}
+
+extern int sys_clock_settime(struct timeval *tv);
+
+int clock_settime(clockid_t clock_id, const struct timespec *tp)
+{
+    struct timeval tv;
+    tv.tv_sec = tp->tv_sec;
+    tv.tv_usec = tp->tv_nsec * 1000;
+
+    int ret = sys_clock_settime(&tv);
+    if (ret < 0) {
+        errno = 0 - ret;
+        ret = -1;
+    }
+    return ret;
+}
+
