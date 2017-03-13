@@ -3,7 +3,7 @@
  */
 
 #include "sys/frosted.h"
-#include "sys/time.h"
+#include "time.h"
 #include <errno.h>
 
 extern int sys_sleep(int ms, uint32_t *rem);
@@ -57,7 +57,8 @@ int nanosleep(const struct timespec *req, struct timespec *rem)
     return ret;
 }
 
-extern int sys_gettimeofday(struct timeval *tv);
+extern int sys_clock_gettime(clockid_t clock_id, struct timespec *tp);
+extern int sys_clock_settime(clockid_t clock_id, struct timespec *tp);
 
 int clock_getres(clockid_t clock_id, struct timespec *res)
 {
@@ -72,30 +73,22 @@ int clock_getres(clockid_t clock_id, struct timespec *res)
 
 int clock_gettime(clockid_t clock_id, struct timespec *tp)
 {
-    struct timeval tv;
-    int ret = sys_gettimeofday(&tv);
+    int ret = sys_clock_gettime(clock_id, tp);
     if (ret < 0) {
         errno = 0 - ret;
         ret = -1;
     }
-    tp->tv_sec = tv.tv_sec;
-    tp->tv_nsec = tv.tv_usec * 1000;
     return ret;
 }
-
-extern int sys_clock_settime(struct timeval *tv);
 
 int clock_settime(clockid_t clock_id, const struct timespec *tp)
 {
-    struct timeval tv;
-    tv.tv_sec = tp->tv_sec;
-    tv.tv_usec = tp->tv_nsec * 1000;
-
-    int ret = sys_clock_settime(&tv);
+    int ret = sys_clock_settime(clock_id, tp);
     if (ret < 0) {
         errno = 0 - ret;
         ret = -1;
     }
     return ret;
 }
+
 

@@ -196,7 +196,8 @@ int _EXFUN(nanosleep, (const struct timespec  *rqtp, struct timespec *rmtp));
 
 /* Manifest Constants, P1003.1b-1993, p. 262 */
 
-#define CLOCK_REALTIME (clockid_t)1
+#define CLOCK_REALTIME (clockid_t)0
+#define CLOCK_MONOTONIC (clockid_t)1
 
 /* Flag indicating time is "absolute" with respect to the clock
    associated with a time.  */
