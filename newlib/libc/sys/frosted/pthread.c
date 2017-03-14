@@ -17,6 +17,12 @@ extern int sys_pthread_mutex_destroy(pthread_mutex_t *mutex);
 extern int sys_pthread_mutex_lock(pthread_mutex_t *mutex);
 extern int sys_pthread_mutex_trylock(pthread_mutex_t *mutex);
 extern int sys_pthread_mutex_unlock(pthread_mutex_t *mutex);
+extern int sys_pthread_kill(pthread_t thread, int sig);
+extern int sys_pthread_getspecific(pthread_key_t *key, uint32_t *value);
+extern int sys_pthread_setspecific(pthread_key_t key, const uint32_t value);
+extern int sys_pthread_key_create(pthread_key_t key, void *destructor);
+
+
 
 int pthread_create(pthread_t *thread, const pthread_attr_t *attr,
                    void *(*start_routine)(void *), void *arg)
@@ -125,5 +131,43 @@ int pthread_setcanceltype(int type, int *oldtype)
 
 int pthread_kill(pthread_t thread, int sig)
 {
-    return sys_pthread_kill(thread, sig);
+    int ret = sys_pthread_kill(thread, sig);
+    if (ret < 0) {
+        errno = 0 - ret;
+        return -1;
+    }
+    return ret;
+}
+
+int pthread_key_create(pthread_key_t *key, void (*destructor)(void*))
+{
+    int ret = sys_pthread_key_create(key, destructor);
+    if (ret < 0) {
+        errno = 0 - ret;
+        return -1;
+    }
+    return ret;
+}
+
+
+int pthread_setspecific(pthread_key_t key, const void *value)
+{
+    int ret = sys_pthread_setspecific(key, (uint32_t)value);
+    if (ret < 0) {
+        errno = 0 - ret;
+        return -1;
+    }
+    return ret;
+}
+
+/* proxy to sys_pthread_getspecific */
+void *pthread_getspecific(pthread_key_t key)
+{
+    uint32_t value;
+    int ret = sys_pthread_getspecific(key, &value);
+    if (ret < 0) {
+        errno = 0 - ret;
+        return NULL;
+    }
+    return (void *)value;
 }

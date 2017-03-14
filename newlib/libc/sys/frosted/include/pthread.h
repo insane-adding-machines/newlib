@@ -20,6 +20,11 @@ int pthread_mutex_destroy(pthread_mutex_t *mutex);
 int pthread_mutex_lock(pthread_mutex_t *mutex);
 int pthread_mutex_trylock(pthread_mutex_t *mutex);
 int pthread_mutex_unlock(pthread_mutex_t *mutex);
+int pthread_key_create(pthread_key_t *key, void (*destructor)(void*));
+int pthread_setspecific(pthread_key_t key, const void *value);
+
+/* proxy to sys_pthread_getspecific */
+void *pthread_getspecific(pthread_key_t key);
 
 /* Pure libC functions */
 int pthread_attr_init(pthread_attr_t *attr);
@@ -30,4 +35,6 @@ int pthread_equal(pthread_t t1, pthread_t t2);
 int pthread_setcanceltype(int type, int *oldtype);
 int pthread_yield(void);
 int pthread_kill(pthread_t thread, int sig);
+
+
 #endif /* _FROSTED_POLL_H */
