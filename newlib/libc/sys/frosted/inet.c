@@ -29,7 +29,7 @@ static inline uint32_t long_from(void *_p)
     return r;
 }
 
-
+/* Warning: returns 0 on failure. */
 int inet_aton(const char *ipstr, struct in_addr *ia)
 {
     unsigned char buf[22] = {
@@ -46,7 +46,7 @@ int inet_aton(const char *ipstr, struct in_addr *ia)
         } else if (p == '.') {
             cnt++;
         } else {
-            return -1;
+            return 0;
         }
     }
     /* Handle short notation */
@@ -59,11 +59,11 @@ int inet_aton(const char *ipstr, struct in_addr *ia)
         buf[2] = 0;
     } else if (cnt != 3) {
         /* String could not be parsed, return error */
-        return -1;
+        return 0;
     }
 
     *ip = htonl(long_from(buf));
-    return 0;
+    return (int)*ip;
 }
 
 int inet_pton(int af, const char *src, void *dst)
