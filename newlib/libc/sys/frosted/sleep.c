@@ -92,3 +92,25 @@ int clock_settime(clockid_t clock_id, const struct timespec *tp)
 }
 
 
+extern int sys_alarm(unsigned int seconds);
+
+unsigned int alarm(unsigned int seconds)
+{
+    unsigned int ret = sys_alarm(seconds);
+    if (ret < 0) {
+        ret = 0;
+    }
+    return ret;
+}
+
+extern int sys_ualarm(useconds_t useconds, useconds_t interval);
+
+useconds_t ualarm(useconds_t useconds, useconds_t interval)
+{
+    useconds_t ret = sys_ualarm(useconds, interval);
+    if (ret < 0) {
+        ret = 0;
+    }
+    return ret;
+}
+
