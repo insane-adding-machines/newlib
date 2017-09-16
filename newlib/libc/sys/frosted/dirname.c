@@ -24,6 +24,10 @@ char *dirname(char *path)
     start = dirname_path;
     ptr = start + len - 1;
 
+    while ((*ptr == '/') && (ptr != start)) {
+        *ptr-- = '\0';
+    }
+
     while (*ptr != '/') {
 	    *ptr-- = '\0';
     }
