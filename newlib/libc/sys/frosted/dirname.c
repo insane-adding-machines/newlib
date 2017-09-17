@@ -7,15 +7,22 @@ char *dirname(char *path)
     int len;
     static char dirname_path[128];
 
-    if ((!path)) {
+    if (!path) {
 	    strcpy(dirname_path, ".");
 	    return (dirname_path);
     }
 
     len = strlen(path);
     if (!len) {
-	    strcpy(dirname_path, ".");
-	    return (dirname_path);
+        strcpy(dirname_path, ".");
+        return (dirname_path);
+    }
+
+    char *tok = strdup(path);
+    char *hastok = strtok(tok, '/');
+    if (!hastok) {
+        strcpy(dirname_path, ".");
+        return (dirname_path);
     }
 
     strcpy(dirname_path, path);
