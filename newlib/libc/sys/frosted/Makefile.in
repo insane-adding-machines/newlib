@@ -251,7 +251,7 @@ lib_a_SOURCES = \
 	mount.c mutex.c mutex_init.c open.c opendir.c pipe.c \
 	poll.c printf.c pthread.c ptrace.c pwd.c read.c readdir.c reboot.c recvfrom.c resource.c sched.c select.c \
 	semaphore.c sem_init.c sendto.c setpriority.c setsid.c setsockopt.c shutdown.c sigaction.c signal.c \
-	sigprocmask.c sigsuspend.c sleep.c socket.c stat.c svc.s syscall.c syscalls.c tcgetattr.c \
+	sigprocmask.c sigsuspend.c sleep.c socket.c stat.c svc.S syscall.c syscalls.c tcgetattr.c \
 	tcsendbreak.c tcsetattr.c truncate.c ttyname.c uid.c umask.c \
 	umount.c unlink.c uname.c vfork.c wait.c waitpid.c write.c stubs.c readlink.c realpath.c \
 	frosted-headers/sys/frosted_syscalls.c 
@@ -858,11 +858,11 @@ lib_a-frosted_syscalls.obj: frosted-headers/sys/frosted_syscalls.c
 .s.obj:
 	$(CCASCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
-lib_a-svc.o: svc.s
-	$(CCAS) $(lib_a_CCASFLAGS) $(CCASFLAGS) -c -o lib_a-svc.o `test -f 'svc.s' || echo '$(srcdir)/'`svc.s
+lib_a-svc.o: svc.S
+	$(CCAS) $(lib_a_CCASFLAGS) $(CCASFLAGS) -c -o lib_a-svc.o `test -f 'svc.S' || echo '$(srcdir)/'`svc.S
 
-lib_a-svc.obj: svc.s
-	$(CCAS) $(lib_a_CCASFLAGS) $(CCASFLAGS) -c -o lib_a-svc.obj `if test -f 'svc.s'; then $(CYGPATH_W) 'svc.s'; else $(CYGPATH_W) '$(srcdir)/svc.s'; fi`
+lib_a-svc.obj: svc.S
+	$(CCAS) $(lib_a_CCASFLAGS) $(CCASFLAGS) -c -o lib_a-svc.obj `if test -f 'svc.S'; then $(CYGPATH_W) 'svc.S'; else $(CYGPATH_W) '$(srcdir)/svc.S'; fi`
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
