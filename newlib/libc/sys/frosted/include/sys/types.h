@@ -25,35 +25,6 @@
 
 #include <machine/_types.h>
 
-#if defined(__rtems__) || defined(__XMK__)
-/*
- *  The following section is RTEMS specific and is needed to more
- *  closely match the types defined in the BSD sys/types.h.
- *  This is needed to let the RTEMS/BSD TCP/IP stack compile.
- */
-
-/* deprecated */
-#if ___int8_t_defined
-typedef __uint8_t	u_int8_t;
-#endif
-#if ___int16_t_defined
-typedef __uint16_t	u_int16_t;
-#endif 
-#if ___int32_t_defined
-typedef __uint32_t	u_int32_t;
-#endif
-
-#if ___int64_t_defined
-typedef __uint64_t	u_int64_t;
-
-/* deprecated */
-typedef	__uint64_t	u_quad_t;
-typedef	__int64_t	quad_t;
-typedef	quad_t *	qaddr_t;
-#endif
-
-#endif
-
 #endif /* ! __INTTYPES_DEFINED */
 
 #ifndef __need_inttypes
@@ -61,12 +32,6 @@ typedef	quad_t *	qaddr_t;
 #define _SYS_TYPES_H
 #include <sys/_types.h>
 #include <sys/_stdint.h>
-
-#ifdef __i386__
-#if defined (GO32) || defined (__MSDOS__)
-#define __MS_types__
-#endif
-#endif
 
 # include <stddef.h>
 # include <machine/types.h>
@@ -134,31 +99,7 @@ typedef	char *	caddr_t;
 #define __caddr_t_defined
 #endif
 
-#ifndef __CYGWIN__
-#if defined(__MS_types__) || defined(__rtems__) || \
-    defined(__sparc__) || defined(__SPU__)
-typedef	unsigned long	ino_t;
-#else
 typedef	unsigned short	ino_t;
-#endif
-#endif /*__CYGWIN__*/
-
-#ifdef __MS_types__
-typedef unsigned long vm_offset_t;
-typedef unsigned long vm_size_t;
-
-#define __BIT_TYPES_DEFINED__
-
-typedef signed char int8_t;
-typedef unsigned char u_int8_t;
-typedef short int16_t;
-typedef unsigned short u_int16_t;
-typedef int int32_t;
-typedef unsigned int u_int32_t;
-typedef long long int64_t;
-typedef unsigned long long u_int64_t;
-typedef int32_t register_t;
-#endif /* __MS_types__ */
 
 /*
  * All these should be machine specific - right now they are all broken.
@@ -167,44 +108,17 @@ typedef int32_t register_t;
  * how the file was compiled (e.g. -mint16 vs -mint32, etc.).
  */
 
-#ifndef __CYGWIN__	/* which defines these types in it's own types.h. */
 typedef _off_t	off_t;
 typedef __dev_t dev_t;
 typedef __uid_t uid_t;
 typedef __gid_t gid_t;
-#endif
 
-#if defined(__XMK__)
-typedef signed char pid_t;
-#else
 typedef int pid_t;
-#endif
 
-#if defined(__rtems__)
-typedef _mode_t mode_t;
-#endif
-
-#ifndef __CYGWIN__
 typedef	long key_t;
-#endif
 typedef _ssize_t ssize_t;
 
-#if !defined(__CYGWIN__) && !defined(__rtems__)
-#ifdef __MS_types__
-typedef	char *	addr_t;
-typedef int mode_t;
-#else
-#if defined (__sparc__) && !defined (__sparc_v9__)
-#ifdef __svr4__
-typedef unsigned long mode_t;
-#else
-typedef unsigned short mode_t;
-#endif
-#else
 typedef unsigned int mode_t _ST_INT32;
-#endif
-#endif /* ! __MS_types__ */
-#endif /*__CYGWIN__*/
 
 typedef unsigned short nlink_t;
 
@@ -249,11 +163,6 @@ typedef	__int64_t	sbintime_t;
  *  2.5 Primitive System Data Types,  P1003.1c/D10, p. 19.
  */
 
-#if defined(__XMK__)
-typedef unsigned int pthread_t;          /* identify a thread */
-#else
-typedef __uint32_t pthread_t;            /* identify a thread */
-#endif
 
 /* P1003.1c/D10, p. 118-119 */
 #define PTHREAD_SCOPE_PROCESS 0
@@ -269,47 +178,6 @@ typedef __uint32_t pthread_t;            /* identify a thread */
 #define PTHREAD_CREATE_DETACHED 0
 #define PTHREAD_CREATE_JOINABLE  1
 
-#if defined(__rtems__)
-  #include <sys/cpuset.h>
-#endif
-
-#if defined(__XMK__)
-typedef struct pthread_attr_s {
-  int contentionscope;
-  struct sched_param schedparam;
-  int  detachstate;
-  void *stackaddr;
-  size_t stacksize;
-} pthread_attr_t;
-
-#define PTHREAD_STACK_MIN       200
-
-#else /* !defined(__XMK__) */
-typedef struct {
-  int is_initialized;
-  void *stackaddr;
-  int stacksize;
-  int contentionscope;
-  int inheritsched;
-  int schedpolicy;
-  struct sched_param schedparam;
-#if defined(__rtems__)
-  size_t guardsize;
-#endif
-
-  /* P1003.4b/D8, p. 54 adds cputime_clock_allowed attribute.  */
-#if defined(_POSIX_THREAD_CPUTIME)
-  int  cputime_clock_allowed;  /* see time.h */
-#endif
-  int  detachstate;
-#if defined(__rtems__)
-  size_t affinitysetsize;
-  cpu_set_t *affinityset;
-  cpu_set_t affinitysetpreallocated;
-#endif
-} pthread_attr_t;
-
-#endif /* !defined(__XMK__) */
 
 #if defined(_POSIX_THREAD_PROCESS_SHARED)
 /* NOTE: P1003.1c/D10, p. 81 defines following values for process_shared.  */
@@ -378,87 +246,6 @@ typedef struct {
 
 #endif /* !defined(_UNIX98_THREAD_MUTEX_ATTRIBUTES) */
 
-#if defined(__XMK__)
-typedef unsigned int pthread_mutex_t;    /* identify a mutex */
-
-typedef struct {
-  int type;
-} pthread_mutexattr_t;
-
-#else /* !defined(__XMK__) */
-typedef __uint32_t pthread_mutex_t;      /* identify a mutex */
-
-typedef struct {
-  int   is_initialized;
-#if defined(_POSIX_THREAD_PROCESS_SHARED)
-  int   process_shared;  /* allow mutex to be shared amongst processes */
-#endif
-#if defined(_POSIX_THREAD_PRIO_PROTECT)
-  int   prio_ceiling;
-  int   protocol;
-#endif
-#if defined(_UNIX98_THREAD_MUTEX_ATTRIBUTES)
-  int type;
-#endif
-  int   recursive;
-} pthread_mutexattr_t;
-#endif /* !defined(__XMK__) */
-
-/* Condition Variables */
-
-typedef __uint32_t pthread_cond_t;       /* identify a condition variable */
-
-typedef struct {
-  int   is_initialized;
-#if defined(_POSIX_THREAD_PROCESS_SHARED)
-  int   process_shared;       /* allow this to be shared amongst processes */
-#endif
-} pthread_condattr_t;         /* a condition attribute object */
-
-/* Keys */
-
-typedef __uint32_t pthread_key_t;        /* thread-specific data keys */
-
-typedef struct {
-  int   is_initialized;  /* is this structure initialized? */
-  int   init_executed;   /* has the initialization routine been run? */
-} pthread_once_t;       /* dynamic package initialization */
-#else
-#if defined (__CYGWIN__)
-#include <cygwin/types.h>
-#endif
-#endif /* defined(_POSIX_THREADS) */
-
-/* POSIX Barrier Types */
-
-#if defined(_POSIX_BARRIERS)
-typedef __uint32_t pthread_barrier_t;        /* POSIX Barrier Object */
-typedef struct {
-  int   is_initialized;  /* is this structure initialized? */
-#if defined(_POSIX_THREAD_PROCESS_SHARED)
-  int   process_shared;       /* allow this to be shared amongst processes */
-#endif
-} pthread_barrierattr_t;
-#endif /* defined(_POSIX_BARRIERS) */
-
-/* POSIX Spin Lock Types */
-
-#if !defined (__CYGWIN__)
-#if defined(_POSIX_SPIN_LOCKS)
-typedef __uint32_t pthread_spinlock_t;        /* POSIX Spin Lock Object */
-#endif /* defined(_POSIX_SPIN_LOCKS) */
-
-/* POSIX Reader/Writer Lock Types */
-
-#if defined(_POSIX_READER_WRITER_LOCKS)
-typedef __uint32_t pthread_rwlock_t;         /* POSIX RWLock Object */
-typedef struct {
-  int   is_initialized;       /* is this structure initialized? */
-#if defined(_POSIX_THREAD_PROCESS_SHARED)
-  int   process_shared;       /* allow this to be shared amongst processes */
-#endif
-} pthread_rwlockattr_t;
-#endif /* defined(_POSIX_READER_WRITER_LOCKS) */
 #endif /* __CYGWIN__ */
 
 #endif  /* !__need_inttypes */
