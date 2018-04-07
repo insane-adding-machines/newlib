@@ -92,7 +92,7 @@ am_lib_a_OBJECTS = lib_a-accept.$(OBJEXT) lib_a-bind.$(OBJEXT) \
 	lib_a-opendir.$(OBJEXT) lib_a-pipe.$(OBJEXT) \
 	lib_a-poll.$(OBJEXT) lib_a-printf.$(OBJEXT) \
 	lib_a-pthread.$(OBJEXT) lib_a-ptrace.$(OBJEXT) \
-	lib_a-pwd.$(OBJEXT) lib_a-read.$(OBJEXT) \
+	lib_a-pty.$(OBJEXT) lib_a-pwd.$(OBJEXT) lib_a-read.$(OBJEXT) \
 	lib_a-readdir.$(OBJEXT) lib_a-reboot.$(OBJEXT) \
 	lib_a-recvfrom.$(OBJEXT) lib_a-resource.$(OBJEXT) \
 	lib_a-sched.$(OBJEXT) lib_a-select.$(OBJEXT) \
@@ -118,11 +118,12 @@ lib_a_OBJECTS = $(am_lib_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp =
 am__depfiles_maybe =
+CPPASCOMPILE = $(CCAS) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CCASFLAGS) $(CCASFLAGS)
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
 LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-CCASCOMPILE = $(CCAS) $(AM_CCASFLAGS) $(CCASFLAGS)
 SOURCES = $(lib_a_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
@@ -249,7 +250,7 @@ lib_a_SOURCES = \
    	getsockopt.c gettimeofday.c grp.c inet.c ioctl.c \
 	isatty.c kill.c link.c listen.c  lseek.c malloc.c malloc_trim.c mkdir.c \
 	mount.c mutex.c mutex_init.c open.c opendir.c pipe.c \
-	poll.c printf.c pthread.c ptrace.c pwd.c read.c readdir.c reboot.c recvfrom.c resource.c sched.c select.c \
+	poll.c printf.c pthread.c ptrace.c pty.c pwd.c read.c readdir.c reboot.c recvfrom.c resource.c sched.c select.c \
 	semaphore.c sem_init.c sendto.c setpriority.c setsid.c setsockopt.c shutdown.c sigaction.c signal.c \
 	sigprocmask.c sigsuspend.c sleep.c socket.c stat.c svc.S syscall.c syscalls.c tcgetattr.c \
 	tcsendbreak.c tcsetattr.c truncate.c ttyname.c uid.c umask.c \
@@ -263,7 +264,7 @@ CONFIG_STATUS_DEPENDENCIES = $(newlib_basedir)/configure.host
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .o .obj .s
+.SUFFIXES: .S .c .o .obj
 am--refresh: Makefile
 	@:
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
@@ -311,6 +312,18 @@ mostlyclean-compile:
 
 distclean-compile:
 	-rm -f *.tab.c
+
+.S.o:
+	$(CPPASCOMPILE) -c -o $@ $<
+
+.S.obj:
+	$(CPPASCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+lib_a-svc.o: svc.S
+	$(CCAS) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CCASFLAGS) $(CCASFLAGS) -c -o lib_a-svc.o `test -f 'svc.S' || echo '$(srcdir)/'`svc.S
+
+lib_a-svc.obj: svc.S
+	$(CCAS) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CCASFLAGS) $(CCASFLAGS) -c -o lib_a-svc.obj `if test -f 'svc.S'; then $(CYGPATH_W) 'svc.S'; else $(CYGPATH_W) '$(srcdir)/svc.S'; fi`
 
 .c.o:
 	$(COMPILE) -c $<
@@ -600,6 +613,12 @@ lib_a-ptrace.o: ptrace.c
 lib_a-ptrace.obj: ptrace.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-ptrace.obj `if test -f 'ptrace.c'; then $(CYGPATH_W) 'ptrace.c'; else $(CYGPATH_W) '$(srcdir)/ptrace.c'; fi`
 
+lib_a-pty.o: pty.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-pty.o `test -f 'pty.c' || echo '$(srcdir)/'`pty.c
+
+lib_a-pty.obj: pty.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-pty.obj `if test -f 'pty.c'; then $(CYGPATH_W) 'pty.c'; else $(CYGPATH_W) '$(srcdir)/pty.c'; fi`
+
 lib_a-pwd.o: pwd.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-pwd.o `test -f 'pwd.c' || echo '$(srcdir)/'`pwd.c
 
@@ -851,18 +870,6 @@ lib_a-frosted_syscalls.o: frosted-headers/sys/frosted_syscalls.c
 
 lib_a-frosted_syscalls.obj: frosted-headers/sys/frosted_syscalls.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-frosted_syscalls.obj `if test -f 'frosted-headers/sys/frosted_syscalls.c'; then $(CYGPATH_W) 'frosted-headers/sys/frosted_syscalls.c'; else $(CYGPATH_W) '$(srcdir)/frosted-headers/sys/frosted_syscalls.c'; fi`
-
-.s.o:
-	$(CCASCOMPILE) -c -o $@ $<
-
-.s.obj:
-	$(CCASCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
-
-lib_a-svc.o: svc.S
-	$(CCAS) $(lib_a_CCASFLAGS) $(CCASFLAGS) -c -o lib_a-svc.o `test -f 'svc.S' || echo '$(srcdir)/'`svc.S
-
-lib_a-svc.obj: svc.S
-	$(CCAS) $(lib_a_CCASFLAGS) $(CCASFLAGS) -c -o lib_a-svc.obj `if test -f 'svc.S'; then $(CYGPATH_W) 'svc.S'; else $(CYGPATH_W) '$(srcdir)/svc.S'; fi`
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
