@@ -6,27 +6,26 @@
 #include <stdint.h>
 #include "sys/frosted-io.h"
 #include "sys/frosted.h"
-extern int sys_reboot(void);
-extern int sys_suspend(uint32_t interval);
-extern int sys_standby(uint32_t interval);
+extern int sys_reboot(uint32_t, int, uint32_t);
 
-int reboot(uint32_t fadeoff)
+static int do_reboot(uint32_t fadeoff, int cmd, uint32_t interval)
 {
     if (fadeoff != SYS_FROSTED_FADEOFF)
         return -EINVAL;
-    return sys_reboot(); /* Actually it will never return. */
+    return sys_reboot(fadeoff, cmd, interval);
 }
 
-int suspend(uint32_t fadeoff, uint32_t interval)
+int reboot()
 {
-    if (fadeoff != SYS_FROSTED_FADEOFF)
-        return -EINVAL;
-    return sys_suspend(interval); /* Actually it will never return. */
+    return do_reboot(SYS_FROSTED_FADEOFF, RB_REBOOT, 0); /* Never returns */
 }
 
-int standby(uint32_t fadeoff, uint32_t interval)
+int suspend(uint32_t interval)
 {
-    if (fadeoff != SYS_FROSTED_FADEOFF)
-        return -EINVAL;
-    return sys_standby(interval);
+    return do_reboot(SYS_FROSTED_FADEOFF, RB_SUSPEND, interval); 
+}
+
+int standby(uint32_t interval)
+{
+    return do_reboot(SYS_FROSTED_FADEOFF, RB_STANDBY, interval); /* Never returns */
 }
